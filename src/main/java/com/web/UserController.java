@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.WebSecurityConfig;
 import com.model.User;
 import com.service.SecurityService;
 import com.service.UserService;
@@ -26,10 +27,19 @@ public class UserController {
 	@Autowired
 	private UserValidator userValidator;
 
+	@RequestMapping(method = RequestMethod.GET)
+	public String admin(Model model) {
+		if (WebSecurityConfig.isAuthenticated()) {
+			return "redirect:/admin/dashboard";
+		}
+
+		return "redirect:/admin/login";
+	}
+
 	@GetMapping("/registration")
 	public String registration(Model model) {
-		if (isAuthenticated()) {
-			return "redirect:/admin/welcome";
+		if (WebSecurityConfig.isAuthenticated()) {
+			return "redirect:/admin/dashboard";
 		}
 		model.addAttribute("userForm", new User());
 
@@ -48,13 +58,13 @@ public class UserController {
 
 		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-		return "redirect:/admin/welcome";
+		return "redirect:/admin/dashboard";
 	}
 
 	@GetMapping("/login")
 	public String login(Model model, String error, String logout) {
-		if (isAuthenticated()) {
-			return "redirect:/admin/welcome";
+		if (WebSecurityConfig.isAuthenticated()) {
+			return "redirect:/admin/dashboard";
 		}
 		if (error != null)
 			model.addAttribute("error", "Your username and password is invalid.");
@@ -65,16 +75,11 @@ public class UserController {
 		return "login";
 	}
 
-	@GetMapping({ "/welcome" })
+	@GetMapping({ "/dashboard" })
 	public String welcome(Model model) {
-		return "welcome";
-	}
-
-	private boolean isAuthenticated() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
-			return false;
+		if (!WebSecurityConfig.isAuthenticated()) {
+			return "redirect:/admin/login";
 		}
-		return authentication.isAuthenticated();
+		return "welcome";
 	}
 }
