@@ -4,7 +4,9 @@ import com.model.Role;
 import com.repository.RoleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
