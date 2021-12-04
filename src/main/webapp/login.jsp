@@ -21,7 +21,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
         <div class="container">
             <form
                 method="POST"
-                action="${contextPath}/login"
+                action="${contextPath}/admin/login"
                 class="form-signin"
             >
                 <h2 class="form-heading">Log in</h2>
@@ -55,7 +55,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                         Log In
                     </button>
                     <h4 class="text-center">
-                        <a href="${contextPath}/registration"
+                        <a href="${contextPath}/admin/registration"
                             >Create an account</a
                         >
                     </h4>
