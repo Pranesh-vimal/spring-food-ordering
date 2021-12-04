@@ -1,7 +1,6 @@
 package com.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,8 +16,8 @@ public class User {
 	@Transient
 	private String passwordConfirm;
 
-	@OneToMany
-	private Set<Role> roles;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Role role;
 
 	public Long getId() {
 		return id;
@@ -52,11 +51,11 @@ public class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 }
