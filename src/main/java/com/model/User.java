@@ -17,7 +17,7 @@ public class User {
 	@Transient
 	private String passwordConfirm;
 
-	@ManyToMany
+	@OneToMany
 	private Set<Role> roles;
 
 	public Long getId() {
