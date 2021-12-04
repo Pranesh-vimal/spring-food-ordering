@@ -9,9 +9,6 @@ import com.model.User;
 import com.repository.RoleRepository;
 import com.repository.UserRepository;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -24,10 +21,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		Set<Role> roles = new HashSet<>();
+
 		Role userRole = roleRepository.findByName("STAFF");
-		roles.add(userRole);
-		user.setRoles(roles);
+		user.setRole(userRole);
 		userRepository.save(user);
 	}
 
