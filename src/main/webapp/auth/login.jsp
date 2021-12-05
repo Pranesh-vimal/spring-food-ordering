@@ -52,10 +52,10 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                             >
                                 Log In
                             </button>                        
-                            <a href="${contextPath}/admin/registration"
+                            <!-- <a href="${contextPath}/admin/registration"
                                 class="btn w-100 btn-primary "
                                 >Create an account</a
-                            >                            
+                            >                             -->
                         </div>
                     </form>
                 </div>
