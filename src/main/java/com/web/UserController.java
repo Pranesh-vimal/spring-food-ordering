@@ -40,7 +40,7 @@ public class UserController {
 		}
 		model.addAttribute("userForm", new User());
 
-		return "registration";
+		return "auth/registration";
 	}
 
 	@PostMapping("/registration")
@@ -48,7 +48,7 @@ public class UserController {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			return "registration";
+			return "auth/registration";
 		}
 
 		userService.save(userForm);
@@ -69,7 +69,7 @@ public class UserController {
 		if (logout != null)
 			model.addAttribute("message", "You have been logged out successfully.");
 
-		return "login";
+		return "auth/login";
 	}
 
 	@GetMapping({ "/dashboard" })
