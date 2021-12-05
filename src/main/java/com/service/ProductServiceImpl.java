@@ -1,7 +1,6 @@
 package com.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.model.Product;
 import com.repository.ProductRepository;
@@ -26,12 +25,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
+    public Product findById(int id) {
+        return productRepository.findById((long) id).orElse(new Product());
     }
 
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void delete(Product product) {
+        productRepository.delete(product);
     }
 }
