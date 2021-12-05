@@ -30,7 +30,7 @@ public class ProductValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "category", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "unit", "NotEmpty");
 
-        if (productService.findByName(product.getName()) != null) {
+        if (product.getId() == null && productService.findByName(product.getName()) != null) {
             errors.rejectValue("name", "Duplicate.productForm.name");
         }
     }
