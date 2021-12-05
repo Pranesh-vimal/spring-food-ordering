@@ -1,7 +1,6 @@
 package com.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.model.Product;
 
@@ -10,7 +9,9 @@ public interface ProductService {
 
     Product findByName(String name);
 
-    Optional<Product> findById(Long id);
+    Product findById(int id);
 
     List<Product> findAll();
+
+    void delete(Product product);
 }
