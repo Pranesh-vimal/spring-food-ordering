@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+*{
+    font-family: 'Jost', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+}
+.auth{
+    height: 100%;
+}
+.auth .authimg{
+    background-image: url('../img/authimg.jpg');
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.auth-form input{
+    border:unset;
+    border-bottom: 1px solid #ccc;
+    border-radius: unset;
+    padding-left: 0;
+}
+.auth-form input:focus{
+    border-bottom: 2px solid #212529;
+    box-shadow: unset;
+}

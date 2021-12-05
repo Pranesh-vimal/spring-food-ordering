@@ -8,46 +8,59 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <t:authLayout>
-    <div class="container">
-        <form
-            method="POST"
-            action="${contextPath}/admin/login"
-            class="form-signin"
-        >
-            <h2 class="form-heading">Log in</h2>
-            <div class="form-group ${error != null ? 'has-error' : ''}">
-                <span>${message}</span>
-                <input
-                    name="username"
-                    type="text"
-                    class="form-control"
-                    placeholder="Username"
-                    autofocus="true"
-                />
-                <input
-                    name="password"
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                />
-                <span>${error}</span>
-                <input
-                    type="hidden"
-                    name="${_csrf.parameterName}"
-                    value="${_csrf.token}"
-                />
-                <button
-                    class="btn btn-lg btn-primary btn-block"
-                    type="submit"
-                >
-                    Log In
-                </button>
-                <h4 class="text-center">
-                    <a href="${contextPath}/admin/registration"
-                        >Create an account</a
-                    >
-                </h4>
+    <div class="auth">
+        <div class="row h-100 me-0">
+            <div class="col-md-6 d-none d-md-block">
+                <div class="authimg"></div>
             </div>
-        </form>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center h-100 align-items-center auth-form">
+                    <form method="POST" action="${contextPath}/admin/login" class="form-signin">
+                        <h2 class="mb-5"><span class="text-warning">Food Order</span> Management</h2>
+                        <h2 class="form-heading">Log in</h2>
+                        <div class="form-group ${error != null ? 'has-error' : ''}">
+                            <p class="mb-3 fw-bold text-success">${message}</p>
+
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Enter your Username"
+                                    autofocus="true"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Enter your Password"
+                                />
+                            </div>
+                            <p class="mb-3 fw-bold text-danger">${error}</p>
+                            <input
+                                type="hidden"
+                                name="${_csrf.parameterName}"
+                                value="${_csrf.token}"
+                            />
+                            <button
+                                class="btn mb-3 w-100 btn-warning btn-block"
+                                type="submit"
+                            >
+                                Log In
+                            </button>                        
+                            <a href="${contextPath}/admin/registration"
+                                class="btn w-100 btn-primary "
+                                >Create an account</a
+                            >                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
     </div>
 </t:authLayout>
