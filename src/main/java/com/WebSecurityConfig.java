@@ -33,8 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/dashboard").authenticated()
 				.antMatchers("/admin/products/**").hasAuthority("ADMIN")
 				.antMatchers("/resources/**", "/admin/registration", "/**").permitAll().anyRequest().anonymous()
-				.and().formLogin().loginPage("/admin/login").permitAll().and().logout().permitAll()
-				.and().exceptionHandling().accessDeniedPage("/403");
+				.and().formLogin().loginPage("/admin/login").permitAll().and().logout().permitAll();
 	}
 
 	@Bean
