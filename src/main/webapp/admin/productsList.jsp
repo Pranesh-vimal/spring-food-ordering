@@ -25,7 +25,8 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                     <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
-                    <%-- <a href="#" class="btn btn-primary">Go somewhere</a> --%>
+                    <a href="/admin/products/edit?id=${item.id}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/products/delete?id=${item.id}" class="btn btn-primary">Delete</a>
                 </div>
             </div>
         </c:forEach>
