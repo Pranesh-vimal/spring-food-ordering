@@ -90,4 +90,24 @@ public class ProductController {
 
         return "redirect:/admin/products";
     }
+
+    @GetMapping("/admin/products/edit")
+    public String adminProductsEdit(Model model, @RequestParam("id") int id) {
+        Product product = productService.findById(id);
+
+        model.addAttribute("productForm", product);
+        return "admin/productsForm";
+    }
+
+    @GetMapping("/admin/products/delete")
+    public String adminProductsDelete(@RequestParam("id") int id) throws IOException {
+        Product product = productService.findById(id);
+
+        String projectDir = Paths.get("").toAbsolutePath().toString();
+        Files.delete(Paths.get(projectDir + "\\src\\main\\resources\\static\\" + product.getImageUrl()));
+
+        productService.delete(product);
+
+        return "redirect:/admin/products";
+    }
 }
