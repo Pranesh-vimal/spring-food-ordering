@@ -19,7 +19,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                         <h2 class="mb-5"><span class="text-warning">Food Order</span> Management</h2>
                         <h2 class="form-heading">Log in</h2>
                         <div class="form-group ${error != null ? 'has-error' : ''}">
-                            <p class="mb-3 fw-bold text-success">${message}</p>
+                            <p class="mb-3 text-success">${message}</p>
 
                             <div class="mb-3">
                                 <label class="form-label">Username</label>
@@ -40,7 +40,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                                     placeholder="Enter your Password"
                                 />
                             </div>
-                            <p class="mb-3 fw-bold text-danger">${error}</p>
+                            <p class="mb-3 text-danger">${error}</p>
                             <input
                                 type="hidden"
                                 name="${_csrf.parameterName}"

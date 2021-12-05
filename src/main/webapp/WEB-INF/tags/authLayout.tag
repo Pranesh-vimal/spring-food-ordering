@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Login | Food Management System</title>
+        <title> ${title} | Food Management System</title>
 
         <link
             href="${contextPath}/resources/css/bootstrap.min.css"

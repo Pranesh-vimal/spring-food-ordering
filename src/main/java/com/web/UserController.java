@@ -39,22 +39,22 @@ public class UserController {
 			return "redirect:/admin/dashboard";
 		}
 		model.addAttribute("userForm", new User());
+		model.addAttribute("title", "Registration");
 
 		return "auth/registration";
 	}
 
 	@PostMapping("/registration")
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
 		userValidator.validate(userForm, bindingResult);
-
+		model.addAttribute("title", "Registration");
 		if (bindingResult.hasErrors()) {
 			return "auth/registration";
 		}
-
 		userService.save(userForm);
-
+		
 		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
+		
 		return "redirect:/admin/dashboard";
 	}
 
@@ -63,6 +63,7 @@ public class UserController {
 		if (WebSecurityConfig.isAuthenticated()) {
 			return "redirect:/admin/dashboard";
 		}
+		model.addAttribute("title", "Login");
 		if (error != null)
 			model.addAttribute("error", "Your username and password is invalid.");
 
