@@ -23,6 +23,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 modelAttribute="productForm"
                 class="form-signin"
                 enctype="multipart/form-data"
+                action="${contextPath}/admin/products/create"
             >
                 <h2 class="form-signin-heading">Product Create</h2>
                 <spring:bind path="name">
@@ -96,6 +97,8 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                         <form:errors path="image"></form:errors>
                     </div>
                 </spring:bind>
+
+                <form:input type="hidden" path="id" placeholder="id"></form:input>
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Submit
