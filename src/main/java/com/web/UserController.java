@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.WebSecurityConfig;
 import com.model.User;
+import com.service.RoleService;
 import com.service.SecurityService;
 import com.service.UserService;
 import com.validator.UserValidator;
@@ -17,6 +18,9 @@ import com.validator.UserValidator;
 public class UserController {
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RoleService roleService;
 
 	@Autowired
 	private SecurityService securityService;
@@ -58,6 +62,35 @@ public class UserController {
 		return "redirect:/admin/dashboard";
 	}
 
+	@GetMapping("/users")
+    public String adminUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
+
+        return "admin/userList";
+    }
+
+	@GetMapping("/users/create")
+	public String adminUsersCreate(Model model) {
+
+		model.addAttribute("userForm", new User());
+		model.addAttribute("title", "Create User");
+		model.addAttribute("roles", roleService.findAll());
+		return "admin/userForm";
+	}
+
+	@PostMapping("/users/create")
+	public String adminUsersCreate(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+
+		userValidator.validate(userForm, bindingResult);
+		model.addAttribute("title", "Create User");
+		model.addAttribute("roles", roleService.findAll());
+		if (bindingResult.hasErrors()) {
+			return "admin/userForm";
+		}
+		userService.save(userForm);
+		return "redirect:/admin/users";
+	}
+
 	@GetMapping("/login")
 	public String login(Model model, String error, String logout) {
 		if (WebSecurityConfig.isAuthenticated()) {
@@ -80,4 +113,34 @@ public class UserController {
 		}
 		return "welcome";
 	}
+
+	@GetMapping("/users/{id}/edit")
+	public String adminUsersEdit(@PathVariable("id") int id, Model model) {
+		model.addAttribute("userForm", userService.findById(id));
+		model.addAttribute("title", "Edit User");
+		model.addAttribute("roles", roleService.findAll());
+		return "admin/userForm";
+	}
+
+	@PostMapping("/users/{id}/edit")
+	public String adminUsersEdit(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+
+		userValidator.validate(userForm, bindingResult);
+		model.addAttribute("title", "Edit User");
+		model.addAttribute("roles", roleService.findAll());
+		if (bindingResult.hasErrors()) {
+			return "admin/userForm";
+		}
+		userService.save(userForm);
+		return "redirect:/admin/users";
+	}
+
+	@GetMapping("/users/{id}/delete")
+	public String adminUsersDelete(@PathVariable("id") int id) {
+		User user=userService.findById(id);
+		user.setRole(null);
+		userService.delete(user);
+		return "redirect:/admin/users";
+	}
+	
 }
