@@ -49,13 +49,14 @@ public class ProductController {
     @GetMapping("/admin/products")
     public String adminProducts(Model model) {
         model.addAttribute("products", productService.findAll());
-
+        model.addAttribute("title", "Products");
         return "admin/productsList";
     }
 
     @GetMapping("/admin/products/create")
     public String adminProductsCreate(Model model) {
         model.addAttribute("productForm", new Product());
+        model.addAttribute("title", "Create Product");
         return "admin/productsForm";
     }
 
