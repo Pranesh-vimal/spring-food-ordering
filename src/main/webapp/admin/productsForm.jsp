@@ -12,7 +12,6 @@
             modelAttribute="productForm"
             class="form-signin"
             enctype="multipart/form-data"
-            action="${contextPath}/admin/products/create"
         >
             <h2 class="mt-2 form-signin-heading">Product ${productForm.getId() == null ? "Create" : "Edit"}</h2>
             <spring:bind path="name">
