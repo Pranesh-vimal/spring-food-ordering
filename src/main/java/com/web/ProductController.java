@@ -36,10 +36,11 @@ public class ProductController {
     private ProductValidator productValidator;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
         if (WebSecurityConfig.isAuthenticated()) {
             return "redirect:/admin/dashboard";
         }
+        model.addAttribute("products", productService.findAll());
         return "index";
     }
 
