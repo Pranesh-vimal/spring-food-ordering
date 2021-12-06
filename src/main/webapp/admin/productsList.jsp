@@ -1,37 +1,39 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> <%@
-taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
-prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Admin | Products</title>
-
-        <link
-            href="${contextPath}/resources/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link href="${contextPath}/resources/css/common.css" rel="stylesheet" />
-    </head>
-
-    <body class="container">
-        Product
-        <div class="row">
-            <c:forEach items="${products}" var="item">
-            <div class="card mx-2" style="width: 18rem;">
-                <img src="${item.imageUrl}" class="card-img-top" alt="${item.name}">
-                    <div class="card-body">
-                    <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text">${item.description}</p>
-                    <a href="/admin/products/edit?id=${item.id}" class="btn btn-primary">Edit</a>
-                    <a href="/admin/products/delete?id=${item.id}" class="btn btn-primary">Delete</a>
-                </div>
-            </div>
-        </c:forEach>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-    </body>
-</html>
+<t:layout>
+    <div class="container mt-3">
+        <h2 class="d-inline">Products</h2>
+        <a href="${contextPath}/admin/products/create" class="btn d-inline float-end btn-success"> Create </a>
+        <table class="table mt-2 table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+            <c:forEach items="${products}" var="product">
+                <tr>
+                    <td>${product.id}</td>
+                    <td><img class="rounded" src="${product.imageUrl}" width="100" height="100"/></td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.description}</td>
+                    <td>${product.category}</td>
+                    <td>
+                        <a class="btn btn-warning" href="/admin/products/edit?id=${product.id}">Edit</a>
+                        <a class="btn btn-dark" href="/admin/products/delete?id=${product.id}">Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</t:layout>
