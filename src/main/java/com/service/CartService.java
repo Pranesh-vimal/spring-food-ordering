@@ -1,5 +1,7 @@
 package com.service;
 
-public interface CartService {
+import com.model.Product;
 
+public interface CartService {
+    public void addToCart(String session, Product product);
 }
