@@ -6,6 +6,27 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:layout>
-    product page
+    <div class="container">
+        <div class="row w-100 mt-3 mb-5">
+            <div class="col-md-8">
+                <div class="row">
+                    <c:forEach items="${products}" var="item">
+                        <div class="col-md-6">
+                            <div class="card d-flex flex-row" style="height: 12rem; width: 20rem;">
+                                <img src="${item.imageUrl}" class=" w-50 card-img-top" alt="${item.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.name}</h5>
+                                    <p class="mb-2 prod-desc card-text">${item.description}</p>
+                                    <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">Per ${item.unit} Kg</small></p>
+                                    
+                                    <a class="btn btn-warning">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
 </t:layout>
 

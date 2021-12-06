@@ -33,3 +33,7 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+.prod-desc{
+    height: 25px;
+    overflow: hidden;
+}
