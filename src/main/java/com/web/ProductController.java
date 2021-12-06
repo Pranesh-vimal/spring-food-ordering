@@ -41,6 +41,8 @@ public class ProductController {
             return "redirect:/admin/dashboard";
         }
         model.addAttribute("products", productService.findAll());
+
+        model.addAttribute("title", "Home");
         return "index";
     }
 
