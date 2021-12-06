@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "carts")
 public class Cart {
@@ -20,6 +22,7 @@ public class Cart {
     private String session;
 
     @OneToMany(mappedBy = "cart")
+    @JsonManagedReference
     private Set<CartItem> cartItems;
 
     private double totalPrice;
