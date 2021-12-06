@@ -14,7 +14,7 @@
             enctype="multipart/form-data"
             action="${contextPath}/admin/products/create"
         >
-            <h2 class="mt-2 form-signin-heading">Product Create</h2>
+            <h2 class="mt-2 form-signin-heading">Product ${productForm.getId() == null ? "Create" : "Edit"}</h2>
             <spring:bind path="name">
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
                     <label class="form-label">Enter Name</label>
@@ -95,10 +95,10 @@
 
             <form:input type="hidden" path="id" placeholder="id"></form:input>
 
-            <button class="btn btn-warning" type="submit">
+            <button class="btn btn-warning mb-5" type="submit">
                 Submit
             </button>
-            <a class="btn btn-dark" href="${contextPath}/admin/products">
+            <a class="btn btn-dark mb-5" href="${contextPath}/admin/products">
                 Back
             </a>
         </form:form>
