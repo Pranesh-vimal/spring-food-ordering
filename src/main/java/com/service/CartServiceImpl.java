@@ -38,4 +38,9 @@ public class CartServiceImpl implements CartService {
 
         cartRepository.save(cart);
     }
+
+    @Override
+    public Cart findBySession(String session) {
+        return cartRepository.findBySession(session);
+    }
 }
