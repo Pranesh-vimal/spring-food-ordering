@@ -57,3 +57,16 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #ffca2c; 
   }
+
+  .cart-container{
+      position: relative;
+      width: 100%;
+  }
+  .cart{
+      position: fixed;
+      width: 30%;
+  }
+  .cart-body{
+      height: 375px;
+      overflow-y: scroll;
+  }
