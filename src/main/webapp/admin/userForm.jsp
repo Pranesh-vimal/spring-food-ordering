@@ -11,9 +11,8 @@
             method="POST"
             modelAttribute="userForm"
             class="form-signin"
-            action="${contextPath}/admin/users/create"
         >
-            <h2 class="mt-2 form-signin-heading">User Create</h2>
+            <h2 class="mt-2 form-signin-heading">User ${userForm.getId() == null ? "Create" : "Edit"}</h2>
             <spring:bind path="username">
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
                     <label class="form-label">Enter Username</label>
