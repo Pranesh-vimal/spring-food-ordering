@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import com.model.Role;
 import com.repository.RoleRepository;
 
@@ -20,5 +22,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findByName(String name) {
         return roleRepository.findByName(name);
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return roleRepository.findAll();
     }
 }
