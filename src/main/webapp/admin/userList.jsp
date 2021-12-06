@@ -9,7 +9,7 @@
 <t:layout>
     <div class="container mt-3">
         <h2 class="d-inline">Users</h2>
-        <a href="${contextPath}/admin/products/create" class="btn d-inline float-end btn-success"> Create </a>
+        <a href="${contextPath}/admin/users/create" class="btn d-inline float-end btn-success"> Create </a>
         <table class="table mt-2 table-striped">
             <tr>
                 <th>ID</th>
