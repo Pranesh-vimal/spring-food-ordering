@@ -21,10 +21,7 @@
             </form>
 
             <h2>
-                Welcome ${pageContext.request.userPrincipal.name} |
-                <a onclick="document.forms['logoutForm'].submit()"
-                    >Logout</a
-                >
+                Welcome ${pageContext.request.userPrincipal.getAuthorities()} 
             </h2>
         </c:if>
     </div>

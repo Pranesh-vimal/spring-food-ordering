@@ -56,18 +56,18 @@ public class UserController {
 			return "auth/registration";
 		}
 		userService.save(userForm);
-		
+
 		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-		
+
 		return "redirect:/admin/dashboard";
 	}
 
 	@GetMapping("/users")
-    public String adminUsers(Model model) {
+	public String adminUsers(Model model) {
+		model.addAttribute("users", userService.findAll());
 		model.addAttribute("title", "Users");
-        model.addAttribute("users", userService.findAll());
-        return "admin/userList";
-    }
+		return "admin/userList";
+	}
 
 	@GetMapping("/users/create")
 	public String adminUsersCreate(Model model) {
@@ -79,7 +79,8 @@ public class UserController {
 	}
 
 	@PostMapping("/users/create")
-	public String adminUsersCreate(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+	public String adminUsersCreate(@ModelAttribute("userForm") User userForm, BindingResult bindingResult,
+			Model model) {
 
 		userValidator.validate(userForm, bindingResult);
 		model.addAttribute("title", "Create User");
@@ -116,7 +117,9 @@ public class UserController {
 
 	@GetMapping("/users/{id}/edit")
 	public String adminUsersEdit(@PathVariable("id") int id, Model model) {
-		model.addAttribute("userForm", userService.findById(id));
+		User user = userService.findById(id);
+		user.setPassword("");
+		model.addAttribute("userForm", user);
 		model.addAttribute("title", "Edit User");
 		model.addAttribute("roles", roleService.findAll());
 		return "admin/userForm";
@@ -131,16 +134,16 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			return "admin/userForm";
 		}
-		userService.save(userForm);
+		userService.update(userForm);
 		return "redirect:/admin/users";
 	}
 
 	@GetMapping("/users/{id}/delete")
 	public String adminUsersDelete(@PathVariable("id") int id) {
-		User user=userService.findById(id);
+		User user = userService.findById(id);
 		user.setRole(null);
 		userService.delete(user);
 		return "redirect:/admin/users";
 	}
-	
+
 }

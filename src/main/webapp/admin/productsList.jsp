@@ -29,8 +29,8 @@
                     <td>${product.description}</td>
                     <td>${product.category}</td>
                     <td>
-                        <a class="btn btn-warning" href="/admin/products/edit?id=${product.id}">Edit</a>
-                        <a class="btn btn-dark" href="/admin/products/delete?id=${product.id}">Delete</a>
+                        <a class="btn btn-warning" href="/admin/products/${product.id}/edit">Edit</a>
+                        <a class="btn btn-dark" href="/admin/products/${product.id}/delete">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -16,7 +16,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Orders</a>
                         </li>
-                        
+                        <c:if test="${pageContext.request.userPrincipal.getName() != null}">
+                            <c:if test="${pageContext.request.userPrincipal.getAuthorities() == '[ADMIN]'}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="${contextPath}/admin/products">Products</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="${contextPath}/admin/users">Users</a>
+                                </li>
+                            </c:if>
+                            <li class="nav-item">
+                            <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form>
+                                <a href="#" class="nav-link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
         </div>
