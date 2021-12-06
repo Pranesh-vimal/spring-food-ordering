@@ -24,8 +24,11 @@ public class UserServiceImpl implements UserService {
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-		Role userRole = roleRepository.findByName("STAFF");
-		user.setRole(userRole);
+		if (user.getRole() == null) {
+			Role userRole = roleRepository.findByName("STAFF");
+			user.setRole(userRole);
+		}
+
 		userRepository.save(user);
 	}
 
@@ -51,6 +54,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void update(User user) {
+
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
 		userRepository.save(user);
 	}
 
