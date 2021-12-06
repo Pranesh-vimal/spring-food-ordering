@@ -68,7 +68,7 @@
             <button class="btn btn-warning" type="submit">
                 Submit
             </button>
-            <a class="btn btn-dark" href="${contextPath}/admin/products">
+            <a class="btn btn-dark" href="${contextPath}/admin/users">
                 Back
             </a>
         </form:form>
