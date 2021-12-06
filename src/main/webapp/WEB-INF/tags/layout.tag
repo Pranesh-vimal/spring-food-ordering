@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="user-layout">
-            <div class="header">
+            <div class="header pb-5">
                 <jsp:include page="${contextPath}/common/header.jsp" />
             </div>
             <div class="contents">
