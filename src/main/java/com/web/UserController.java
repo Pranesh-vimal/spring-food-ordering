@@ -64,8 +64,8 @@ public class UserController {
 
 	@GetMapping("/users")
     public String adminUsers(Model model) {
+		model.addAttribute("title", "Users");
         model.addAttribute("users", userService.findAll());
-
         return "admin/userList";
     }
 
