@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -95,16 +96,52 @@ public class ProductController {
         return "redirect:/admin/products";
     }
 
-    @GetMapping("/admin/products/edit")
-    public String adminProductsEdit(Model model, @RequestParam("id") int id) {
+    @GetMapping("/admin/products/{id}/edit")
+    public String adminProductsEdit(Model model, @PathVariable("id") int id) {
         Product product = productService.findById(id);
 
         model.addAttribute("productForm", product);
+        model.addAttribute("title", "Product Edit");
         return "admin/productsForm";
     }
 
-    @GetMapping("/admin/products/delete")
-    public String adminProductsDelete(@RequestParam("id") int id) throws IOException {
+    @PostMapping("/admin/products/{id}/edit")
+    public String adminProductsUpdate(@ModelAttribute("productForm") Product productForm, BindingResult bindingResult,
+            @RequestParam("image") MultipartFile file) throws IOException {
+        productValidator.validate(productForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "admin/productsForm";
+        }
+
+        String projectDir = Paths.get("").toAbsolutePath().toString();
+        String fileImgname = StringUtils.cleanPath(file.getOriginalFilename());
+
+        String uploadImgDir = projectDir + "\\src\\main\\resources\\static\\images";
+
+        Path uploadImgpath = Paths.get(uploadImgDir);
+
+        if (!Files.exists(uploadImgpath)) {
+            Files.createDirectories(uploadImgpath);
+        }
+
+        try {
+            InputStream is = file.getInputStream();
+            Path fileImgpath = uploadImgpath.resolve(fileImgname);
+            Files.copy(is, fileImgpath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        productForm.setImageUrl("\\images\\" + fileImgname);
+
+        productService.save(productForm);
+
+        return "redirect:/admin/products";
+    }
+
+    @GetMapping("/admin/products/{id}/delete")
+    public String adminProductsDelete(@PathVariable("id") int id) throws IOException {
         Product product = productService.findById(id);
 
         String projectDir = Paths.get("").toAbsolutePath().toString();
