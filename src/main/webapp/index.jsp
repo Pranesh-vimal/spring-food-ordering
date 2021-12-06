@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <c:forEach items="${products}" var="item">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <div class="card d-flex flex-row" style="height: 12rem; width: 20rem;">
                                 <img src="${item.imageUrl}" class=" w-50 card-img-top" alt="${item.name}">
                                 <div class="card-body">
