@@ -95,10 +95,10 @@
 
             <form:input type="hidden" path="id" placeholder="id"></form:input>
 
-            <button class="btn btn-success" type="submit">
+            <button class="btn btn-warning" type="submit">
                 Submit
             </button>
-            <a class="btn btn-primary" href="${contextPath}/admin/products">
+            <a class="btn btn-dark" href="${contextPath}/admin/products">
                 Back
             </a>
         </form:form>
