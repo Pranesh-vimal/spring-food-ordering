@@ -13,8 +13,8 @@
             class="form-signin"
             action="${contextPath}/admin/users/create"
         >
-            <h2 class="mt-2 form-signin-heading">Product Create</h2>
-            <spring:bind path="name">
+            <h2 class="mt-2 form-signin-heading">User Create</h2>
+            <spring:bind path="username">
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
                     <label class="form-label">Enter Username</label>
                     <form:input
@@ -27,20 +27,6 @@
                 </div>
             </spring:bind>
 
-            <spring:bind path="email">
-                <div class="mb-3 ${status.error ? 'has-error' : ''}">
-                    <label class="form-label">Enter Email</label>
-                    <form:input
-                        type="email"
-                        path="email"
-                        class="form-control"
-                        placeholder="Enter Email"
-                    ></form:input>
-                    <form:errors path="Enter Email"></form:errors>
-                </div>
-            </spring:bind>
-
-            <spring:bind path="password">
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
                     <label class="form-label">Enter Password</label>
                     <form:input
@@ -50,8 +36,18 @@
                         placeholder="Enter Password"
                     ></form:input>
                     <form:errors path="password"></form:errors>
+                </div>            
+
+                <div class="mb-3 ${status.error ? 'has-error' : ''}">
+                    <label class="form-label">Enter Confirm Password</label>
+                    <form:input
+                        type="password"
+                        path="passwordConfirm"
+                        class="form-control"
+                        placeholder="Enter Confirm Password"
+                    ></form:input>
+                    <form:errors path="passwordConfirm"></form:errors>
                 </div>
-            </spring:bind>
 
             <div class="mb-3">
                 <label class="form-label">Enter Role</label>

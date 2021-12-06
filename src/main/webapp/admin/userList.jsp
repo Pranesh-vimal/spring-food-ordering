@@ -13,20 +13,18 @@
         <table class="table mt-2 table-striped">
             <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
+                <th>Username</th>               
                 <th>Role</th>
                 <th>Action</th>
             </tr>
             <c:forEach items="${users}" var="user">
                 <tr>
                     <td>${user.id}</td>                    
-                    <td>${user.username}</td>
-                    <td>${user.email}</td>
-                    <td>${user.role}</td>
+                    <td>${user.username}</td>                    
+                    <td>${user.role.getName()}</td>
                     <td>
-                        <a class="btn btn-warning" href="/admin/products/edit?id=${user.id}">Edit</a>
-                        <a class="btn btn-dark" href="/admin/products/delete?id=${user.id}">Delete</a>
+                        <a class="btn btn-warning" href="/admin/users/${user.id}/edit">Edit</a>
+                        <a class="btn btn-dark" href="/admin/users/${user.id}/delete">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
