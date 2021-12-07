@@ -67,6 +67,10 @@ body{
       width: 30%;
   }
   .cart-body{
-      height: 375px;
+      max-height: 375px;
       overflow-y: scroll;
+  }
+
+  .w-20{
+        width: 20%;
   }
