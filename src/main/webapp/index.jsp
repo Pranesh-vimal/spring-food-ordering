@@ -38,7 +38,8 @@
                         <div class="mt-3 pw px-2 d-none cart-body">
                             <div class="cart-item ">                                
                             </div>
-                                <a class="btn w-100 mb-5 btn-warning" href="#">Order Now</a>
+                                <a class="btn w-100 mb-1 btn-warning" href="#">Order Now</a>
+                                <button onclick="clearCart()" class="btn w-100 mb-5 btn-dark" href="#">Clear Cart</button>
                         </div>
                     </div>
                 </div>

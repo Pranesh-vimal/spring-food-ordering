@@ -25,7 +25,7 @@ async function addtoCart(id){
                                 <button onclick="removeFromCart(${item.product.id})" class="btn w-20 fw-bold text-center btn-dark">-</button>
                                 <p  class="w-20 d-inline text-center fs-6 py-2 rounded px-3 border cart-quantity" >${item.quantity}</p>
                                 <button onclick="addtoCart(${item.product.id})" class="btn w-20 btn-dark">+</button>
-                                <button class="btn float-end btn-danger w-20 pe-4 text-center"><i class="far fa-trash-alt"></i></button>
+                                <button onclick="deleteItem(${item.product.id})" class="btn float-end btn-danger w-20 pe-4 text-center"><i class="far fa-trash-alt"></i></button>
                             </div>
                             <p class="mb-2 card-text fw-bold">Rs. ${item.product.price}</p>
                         </div>
@@ -59,7 +59,7 @@ async function getCart(){
                                     <button onclick="removeFromCart(${item.product.id})" class="btn w-20 fw-bold text-center btn-dark">-</button>
                                     <p  class="w-20 d-inline text-center fs-6 py-2 rounded px-3 border cart-quantity" >${item.quantity}</p>
                                     <button onclick="addtoCart(${item.product.id})" class="btn w-20 btn-dark">+</button>
-                                    <button class="btn float-end btn-danger w-20 pe-4 text-center"><i class="far fa-trash-alt"></i></button>
+                                    <button onclick="deleteItem(${item.product.id})" class="btn float-end btn-danger w-20 pe-4 text-center"><i class="far fa-trash-alt"></i></button>
                                 </div>
                                 <p class="mb-2 card-text fw-bold">Rs. ${item.product.price}</p>
                             </div>
@@ -80,7 +80,12 @@ async function removeFromCart(id){
     getCart();
 }
 
-// async function deleteItem(id){
-//     const res=await axios.get(`/cart/delete/${id}`);
-//     getCart();
-// }
+async function deleteItem(id){
+    const res=await axios.get(`/cart/delete/${id}`);
+    getCart();
+}
+
+async function clearCart(){
+    const res=await axios.get('/cart/clear');
+    getCart();
+}
