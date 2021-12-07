@@ -1,8 +1,13 @@
 package com.service;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
+import com.Mail;
 import com.model.Cart;
 import com.model.CartItem;
 import com.model.Order;
@@ -34,6 +39,17 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderItems(orderItemService.findByOrder(order));
         orderRepository.save(order);
+
+        Mail mailer = new Mail();
+        try {
+            mailer.send(order);
+        } catch (AddressException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
