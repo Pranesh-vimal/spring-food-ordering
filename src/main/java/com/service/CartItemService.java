@@ -13,4 +13,8 @@ public interface CartItemService {
     double getTotalPrice(Cart cart);
 
     Set<CartItem> findByCartId(int id);
+
+    void removeFromCart(Cart cart, Product product);
+
+    void clearCart(Cart cart);
 }
