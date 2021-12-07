@@ -151,4 +151,10 @@ public class ProductController {
 
         return "redirect:/admin/products";
     }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
+    }
+
 }
