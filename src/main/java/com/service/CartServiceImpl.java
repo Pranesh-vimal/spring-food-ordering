@@ -43,4 +43,38 @@ public class CartServiceImpl implements CartService {
     public Cart findBySession(String session) {
         return cartRepository.findBySession(session);
     }
+
+    @Override
+    public Cart removeFromCart(String session, Product product) {
+        Cart cart = cartRepository.findBySession(session);
+        if (cart != null) {
+            cartItemService.removeFromCart(cart, product);
+
+            Set<CartItem> cartItems = cartItemService.findByCartId(cart.getId());
+
+            cart.setCartItems(cartItems);
+
+            cart.setTotalPrice(cartItemService.getTotalPrice(cart));
+
+            cartRepository.save(cart);
+        }
+
+        return cart;
+    }
+
+    @Override
+    public void clearCart(String session) {
+        Cart cart = cartRepository.findBySession(session);
+        if (cart != null) {
+            cartItemService.clearCart(cart);
+
+            Set<CartItem> cartItems = cartItemService.findByCartId(cart.getId());
+
+            cart.setCartItems(cartItems);
+
+            cart.setTotalPrice(cartItemService.getTotalPrice(cart));
+
+            cartRepository.save(cart);
+        }
+    }
 }
