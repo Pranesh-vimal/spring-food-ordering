@@ -19,7 +19,7 @@
                                     <p class="mb-2 prod-desc card-text">${item.description}</p>
                                     <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">${item.unit}</small></p>
                                     
-                                    <a href="/cart/add?id=${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</a>
+                                    <a href="/cart/add/${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</a>
                                 </div>
                             </div>
                         </div>
