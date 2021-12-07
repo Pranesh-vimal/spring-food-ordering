@@ -19,7 +19,7 @@
                                     <p class="mb-2 prod-desc card-text">${item.description}</p>
                                     <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">${item.unit}</small></p>
                                     
-                                    <a href="/cart/add/${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</a>
+                                    <button onclick="addtoCart(this.id)" id="${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -32,25 +32,13 @@
                         <div class="cart-header px-3 py-2 rounded bg-dark text-white">
                             <h5 class="fw-bold text-center mb-0">Cart</h5>
                         </div>
-                        <div class="mt-3 pw px-2 cart-body">
-                            <div class="cart-item">
-                                <c:forEach items="${products}" var="item">
-                                    <div class="item mb-3">
-                                        <div class="card d-flex flex-row" style="height: 10rem;">
-                                            <div class="card-body d-flex">
-                                                <img src="${item.imageUrl}" style="height: 100%" class=" w-50 card-img-top" alt="${item.name}">
-                                                <div class="content px-2">
-                                                    <h6 class="card-title">${item.name}</h6>
-                                                    <p class="mb-2 card-text">Rs. ${item.price} </p>
-                                                    <input type="number" class="form-control" value="1">
-                                                    <p class="mb-2 card-text fw-bold">Rs. ${item.price}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                                <a class="btn w-100 mb-5 btn-warning" href="#">Order Now</a>
+                        <div class="d-flex mt-3 justify-content-center align-items-center no-items">
+                            <p class="fw-bold">No Items in your cart</p>
+                        </div>
+                        <div class="mt-3 pw px-2 d-none cart-body">
+                            <div class="cart-item ">                                
                             </div>
+                                <a class="btn w-100 mb-5 btn-warning" href="#">Order Now</a>
                         </div>
                     </div>
                 </div>
