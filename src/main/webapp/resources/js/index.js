@@ -15,7 +15,7 @@ async function getCart(){
     $('.cart-body').addClass('d-none');
     const res=await axios.get('/cart');
     const data=res.data;
-    // console.log(data=="");
+    console.log(data);
     if(data!="" && data.cartItems.length>0){
         $('.no-items').addClass('d-none');
         $('.cart-body').removeClass('d-none');
@@ -34,7 +34,7 @@ async function getCart(){
                                     <button onclick="addtoCart(${item.product.id})" class="btn w-20 btn-dark">+</button>
                                     <button onclick="deleteItem(${item.product.id})" class="btn float-end btn-danger w-20 pe-4 text-center"><i class="far fa-trash-alt"></i></button>
                                 </div>
-                                <p class="mb-2 card-text fw-bold">Rs. ${item.product.price}</p>
+                                <p class="mb-2 card-text fw-bold">Rs. ${item.subTotal}</p>
                             </div>
                         </div>
                     </div>
