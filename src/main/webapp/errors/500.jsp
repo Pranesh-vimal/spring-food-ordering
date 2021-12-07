@@ -7,16 +7,16 @@
 
 <t:layout>
     <div class="container mt-5">
-        <div class="row h-100 text-center">
+        <div class="row text-center">
             <div class="col-md-12">
-                <div class=" error-template">
+                <div class="error-template">
                     <h1>Oops!</h1>
-                    <h2>403 Forbidden</h2>
+                    <h2>500 Internal Server Error</h2>
                     <div class="error-details mb-2">
-                        Sorry, you are not authorized to access this page.
+                        Sorry, an error has occured, Contact your system administrator.
                     </div>
                     <div class="error-actions">
-                        <a href="${contextPath}/" class="btn btn-warning "><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
+                        <a href="${contextPath}/" class="btn btn-warning"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
                     </div>
                 </div>
             </div>

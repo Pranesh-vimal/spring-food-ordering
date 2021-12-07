@@ -6,8 +6,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:layout>
-    <div class="container">
-        <div class="row w-100 mt-3 mb-5">
+    <div class="container pb-5">
+        <div class="row w-100 mt-3 mb-5 ms-0 me-0">
             <div class="col-md-8">
                 <div class="row">
                     <c:forEach items="${products}" var="item">

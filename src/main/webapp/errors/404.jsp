@@ -12,11 +12,11 @@
                 <div class="error-template">
                     <h1>Oops!</h1>
                     <h2>404 Not Found</h2>
-                    <div class="error-details">
+                    <div class="error-details mb-2">
                         Sorry, an error has occured, Requested page not found!
                     </div>
                     <div class="error-actions">
-                        <a href="${contextPath}/admin" class="btn btn-warning"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
+                        <a href="${contextPath}/" class="btn btn-warning"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
                     </div>
                 </div>
             </div>
