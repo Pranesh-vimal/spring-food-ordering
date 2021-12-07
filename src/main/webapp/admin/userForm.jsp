@@ -22,7 +22,7 @@
                         class="form-control"
                         placeholder="Enter Username"
                     ></form:input>
-                    <form:errors path="username"></form:errors>
+                    <form:errors class="text-danger" path="username"></form:errors>
                 </div>
             </spring:bind>
 
@@ -34,7 +34,7 @@
                         class="form-control"
                         placeholder="Enter Password"
                     ></form:input>
-                    <form:errors path="password"></form:errors>
+                    <form:errors class="text-danger" path="password"></form:errors>
                 </div>            
 
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
@@ -45,7 +45,7 @@
                         class="form-control"
                         placeholder="Enter Confirm Password"
                     ></form:input>
-                    <form:errors path="passwordConfirm"></form:errors>
+                    <form:errors class="text-danger" path="passwordConfirm"></form:errors>
                 </div>
 
             <div class="mb-3">

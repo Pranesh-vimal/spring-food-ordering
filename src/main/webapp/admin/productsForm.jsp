@@ -23,7 +23,7 @@
                         class="form-control"
                         placeholder="name"
                     ></form:input>
-                    <form:errors path="name"></form:errors>
+                    <form:errors class="text-danger" path="name"></form:errors>
                 </div>
             </spring:bind>
 
@@ -36,7 +36,7 @@
                         class="form-control"
                         placeholder="description"
                     ></form:input>
-                    <form:errors path="description"></form:errors>
+                    <form:errors class="text-danger" path="description"></form:errors>
                 </div>
             </spring:bind>
 
@@ -49,7 +49,7 @@
                         class="form-control"
                         placeholder="price"
                     ></form:input>
-                    <form:errors path="price"></form:errors>
+                    <form:errors class="text-danger" path="price"></form:errors>
                 </div>
             </spring:bind>
 
@@ -62,7 +62,7 @@
                         class="form-control"
                         placeholder="category"
                     ></form:input>
-                    <form:errors path="category"></form:errors>
+                    <form:errors class="text-danger" path="category"></form:errors>
                 </div>
             </spring:bind>
 
@@ -75,7 +75,7 @@
                         class="form-control"
                         placeholder="unit"
                     ></form:input>
-                    <form:errors path="unit"></form:errors>
+                    <form:errors class="text-danger" path="unit"></form:errors>
                 </div>
             </spring:bind>
 
@@ -88,7 +88,7 @@
                         class="form-control"
                         placeholder="image"
                     ></form:input>
-                    <form:errors path="image"></form:errors>
+                    <form:errors class="text-danger" path="image"></form:errors>
                 </div>
             </spring:bind>
 
