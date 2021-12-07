@@ -49,4 +49,26 @@ public class CartItemServiceImpl implements CartItemService {
     public Set<CartItem> findByCartId(int id) {
         return cartItemRepository.findByCartId(id);
     }
+
+    @Override
+    public void removeFromCart(Cart cart, Product product) {
+        CartItem cartItem = cartItemRepository.findByCartIdAndProductId(cart.getId(), product.getId());
+
+        if (cartItem != null) {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setSubTotal(cartItem.getSubTotal() - cartItem.getProduct().getPrice());
+            cartItemRepository.save(cartItem);
+
+            if (cartItem.getQuantity() == 0) {
+                cartItemRepository.delete(cartItem);
+            }
+        }
+    }
+
+    @Override
+    public void clearCart(Cart cart) {
+        for (CartItem cartItem : cart.getCartItems()) {
+            cartItemRepository.delete(cartItem);
+        }
+    }
 }
