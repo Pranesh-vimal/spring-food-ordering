@@ -16,7 +16,7 @@
                                 <a class="nav-link active" aria-current="page" href="${contextPath}/admin/dashboard">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Orders</a>
+                                <a class="nav-link" href="${contextPath}/admin/orders">Orders</a>
                             </li>
                             <c:if test="${pageContext.request.userPrincipal.getAuthorities() == '[ADMIN]'}">
                                 <li class="nav-item">
@@ -38,7 +38,7 @@
                                 <a class="nav-link active" aria-current="page" href="${contextPath}/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Orders</a>
+                                <a class="nav-link" href="${contextPath}/orders">Orders</a>
                             </li>
                         </c:otherwise>
                         </c:choose>
