@@ -1,6 +1,28 @@
 $('document').ready(function(){
     // console.log("Hello World");
     getCart();
+    $('.checkout-btn').click(async function(){
+        $('.cart-container').addClass('d-none');
+        $('.order-details').empty();
+        $('.checkout-container').removeClass('d-none');
+        const res=await axios.get('/cart');
+        const data=res.data;
+        if(data!="" && data.cartItems.length>0){
+            $('.order-details').append(`
+                <h5>Order Details</h5>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Total</th>
+                        <td>Rs. ${data.totalPrice}</td>
+                    </tr>
+                </table>
+            `);
+        }
+    });
+    $('.back-btn').click(function(){
+        $('.cart-container').removeClass('d-none');
+        $('.checkout-container').addClass('d-none');
+    });
 });
 
 async function addtoCart(id){
@@ -15,7 +37,7 @@ async function getCart(){
     $('.cart-body').addClass('d-none');
     const res=await axios.get('/cart');
     const data=res.data;
-    console.log(data);
+    // console.log(data);
     if(data!="" && data.cartItems.length>0){
         $('.no-items').addClass('d-none');
         $('.cart-body').removeClass('d-none');

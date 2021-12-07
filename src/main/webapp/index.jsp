@@ -38,8 +38,35 @@
                         <div class="mt-3 pw px-2 d-none cart-body">
                             <div class="cart-item ">                                
                             </div>
-                                <a class="btn w-100 mb-1 btn-warning" href="#">Checkout</a>
+                                <a class="btn checkout-btn w-100 mb-1 btn-warning" href="#">Checkout</a>
                                 <button onclick="clearCart()" class="btn w-100 mb-5 btn-dark" href="#">Clear Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-container d-none">
+                    <div class="cart border rounded">
+                        <div class="cart-header px-3 py-2 rounded bg-dark text-white">
+                            <h5 class="fw-bold text-center mb-0">Checkout</h5>
+                        </div>
+                        <div class="cart-body p-3">
+                            <div class=" mb-3 order-details"> 
+                            </div>
+                            <form class="mb-1" action="" method="post">
+                                <div class="mb-3">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone">
+                                </div>
+                                <button type="submit" class="btn btn-warning w-100">Checkout</button> 
+                            </form>
+                            <button class="btn back-btn btn-dark w-100">Back to Cart</button>
                         </div>
                     </div>
                 </div>

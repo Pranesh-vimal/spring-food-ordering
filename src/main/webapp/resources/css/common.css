@@ -58,7 +58,7 @@ body{
     background: #ffca2c; 
   }
 
-  .cart-container{
+  .cart-container,.checkout-container{
       position: relative;
       width: 100%;
   }
