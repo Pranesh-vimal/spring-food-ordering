@@ -95,7 +95,7 @@ public class CartController {
         if (cart != null) {
             orderService.checkout(cart, order);
             cartService.clearCart(session);
-            return "redirect:/success";
+            return "success";
         }
         return null;
     }
