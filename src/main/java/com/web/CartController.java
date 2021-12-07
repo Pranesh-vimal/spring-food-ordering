@@ -36,4 +36,31 @@ public class CartController {
 
         return null;
     }
+
+    @GetMapping("")
+    public Cart getCart() {
+        String session = RequestContextHolder.currentRequestAttributes().getSessionId();
+        Cart cart = cartService.findBySession(session);
+        return cart;
+    }
+
+    @GetMapping("/remove/{id}")
+    public Cart removeFromCart(@PathVariable("id") int id) {
+        String session = RequestContextHolder.currentRequestAttributes().getSessionId();
+        Product product = productService.findById(id);
+        if (product != null) {
+            cartService.removeFromCart(session, product);
+            Cart cart = cartService.findBySession(session);
+            return cart;
+        }
+        return null;
+    }
+
+    @GetMapping("/clear")
+    public Cart clearCart() {
+        String session = RequestContextHolder.currentRequestAttributes().getSessionId();
+        cartService.clearCart(session);
+        Cart cart = cartService.findBySession(session);
+        return cart;
+    }
 }
