@@ -63,4 +63,16 @@ public class CartController {
         Cart cart = cartService.findBySession(session);
         return cart;
     }
+
+    @GetMapping("/delete/{id}")
+    public Cart deleteCart(@PathVariable("id") int id) {
+        String session = RequestContextHolder.currentRequestAttributes().getSessionId();
+        Product product = productService.findById(id);
+        if (product != null) {
+            cartService.deleteCart(session, product);
+            Cart cart = cartService.findBySession(session);
+            return cart;
+        }
+        return null;
+    }
 }
