@@ -25,6 +25,8 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal(cart.getTotalPrice());
         order.setDate(new Date(System.currentTimeMillis()));
         order.setStatus("Created");
+        orderRepository.save(order);
+
         Set<CartItem> cartItems = cart.getCartItems();
         for (CartItem cartItem : cartItems) {
             orderItemService.createOrderItem(cartItem, order);
