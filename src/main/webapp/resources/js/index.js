@@ -23,6 +23,32 @@ $('document').ready(function(){
         $('.cart-container').removeClass('d-none');
         $('.checkout-container').addClass('d-none');
     });
+    $('.order-btn').click(function(){
+        let name=$('#name').val();
+        let email=$('#email').val();
+        let phone=$('#phone').val();
+        if(name=="" || email=="" || phone==""){
+            $('.error-text').removeClass('d-none');
+            $('.error-text').text('Please fill all the fields');
+        }
+        else{
+            if(name.length<=3 || (phone.length<10 || phone.length>13)){
+                console.log(name.length<=3);
+                $('.error-text').removeClass('d-none');
+                $('.error-text').text('Please enter valid details');
+            }
+            else{
+                $('.error-text').addClass('d-none');
+                $('.error-text').text('');
+                $('#name').val("");
+                $('#email').val("");
+                $('#phone').val("");
+                $('.cart-container').removeClass('d-none');
+                $('.checkout-container').addClass('d-none');
+                checkout();
+            }
+        }        
+    });
 });
 
 async function addtoCart(id){
@@ -89,4 +115,22 @@ async function deleteItem(id){
 async function clearCart(){
     const res=await axios.get('/cart/clear');
     getCart();
+}
+
+async function checkout(){
+    await axios.post('/cart/checkout',{
+        name:$('#name').val(),
+        email:$('#email').val(),
+        phone:$('#phone').val()
+    }).then(function(res){
+        if(res.data.success){
+            alert('Order Placed Successfully');
+            clearCart();
+        }
+        else{
+            alert('Order Failed');
+        }
+    }).catch(function(err){
+        console.log(err);
+    });
 }

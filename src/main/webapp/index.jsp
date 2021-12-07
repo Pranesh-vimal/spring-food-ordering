@@ -51,7 +51,7 @@
                         <div class="cart-body p-3">
                             <div class=" mb-3 order-details"> 
                             </div>
-                            <form class="mb-1" action="" method="post">
+                            <form onsubmit="event.preventDefault()" class="mb-1" action="" method="post">
                                 <div class="mb-3">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
@@ -64,7 +64,8 @@
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone">
                                 </div>
-                                <button type="submit" class="btn btn-warning w-100">Checkout</button> 
+                                <p class="text-danger error-text d-none"></p>
+                                <button type="submit" class="btn order-btn btn-warning  w-100">Order Now</button> 
                             </form>
                             <button class="btn back-btn btn-dark w-100">Back to Cart</button>
                         </div>
