@@ -11,4 +11,6 @@ public interface CartService {
     public Cart removeFromCart(String session, Product product);
 
     public void clearCart(String session);
+
+    public void deleteCart(String session, Product product);
 }
