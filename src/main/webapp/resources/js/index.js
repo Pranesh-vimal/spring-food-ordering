@@ -33,11 +33,11 @@ $('document').ready(function(){
         }
         else{
             if(name.length<=3 || (phone.length<10 || phone.length>13)){
-                console.log(name.length<=3);
                 $('.error-text').removeClass('d-none');
                 $('.error-text').text('Please enter valid details');
             }
             else{
+                checkout();
                 $('.error-text').addClass('d-none');
                 $('.error-text').text('');
                 $('#name').val("");
@@ -45,7 +45,6 @@ $('document').ready(function(){
                 $('#phone').val("");
                 $('.cart-container').removeClass('d-none');
                 $('.checkout-container').addClass('d-none');
-                checkout();
             }
         }        
     });
@@ -118,14 +117,23 @@ async function clearCart(){
 }
 
 async function checkout(){
-    await axios.post('/cart/checkout',{
-        name:$('#name').val(),
-        email:$('#email').val(),
-        phone:$('#phone').val()
+    let token = $("meta[name='_csrf']").attr("content");
+    let header = $("meta[name='_csrf_header']").attr("content");
+    await axios({
+        method: 'post',
+        url: '/cart/checkout',
+        headers: {
+            [header]: token
+        },
+        data:{
+            name:$('#name').val(),
+            email:$('#email').val(),
+            phone:$('#phone').val()
+        }
     }).then(function(res){
-        if(res.data.success){
-            alert('Order Placed Successfully');
-            clearCart();
+        if(res.data=="success"){
+            swal("Good job!", "Order Placed Successfully!", "success");
+            getCart();
         }
         else{
             alert('Order Failed');
