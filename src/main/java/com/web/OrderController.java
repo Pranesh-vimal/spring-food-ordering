@@ -32,7 +32,6 @@ public class OrderController {
         int orderId = Integer.parseInt(requestParams.get("orderId"));
         String email = requestParams.get("email").toString();
         Order order = orderService.getOrder(orderId, email);
-        System.out.println(order);
         model.addAttribute("order", order);
         model.addAttribute("title", "Order Details");
         return "OrderDetails";
