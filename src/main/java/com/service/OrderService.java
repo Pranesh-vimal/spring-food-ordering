@@ -6,4 +6,6 @@ import com.model.Order;
 public interface OrderService {
 
     void checkout(Cart cart, Order order);
+
+    Order getOrder(int orderId, String email);
 }
