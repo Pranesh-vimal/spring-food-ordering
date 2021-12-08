@@ -1,6 +1,6 @@
 package com.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class Order {
 
     private double total;
 
-    private Date date;
+    private Timestamp created_at;
 
     private String status;
 
@@ -76,12 +76,12 @@ public class Order {
         this.total = total;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public String getStatus() {
@@ -102,7 +102,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order [date=" + date + ", email=" + email + ", id=" + id + ", name=" + name + ", orderItems="
-                + orderItems + ", phone=" + phone + ", status=" + status + ", total=" + total + "]";
+        return "Order [created_at=" + created_at + ", email=" + email + ", id=" + id + ", name=" + name
+                + ", orderItems=" + orderItems + ", phone=" + phone + ", status=" + status + ", total=" + total + "]";
     }
 }
