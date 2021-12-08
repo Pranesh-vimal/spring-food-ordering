@@ -7,7 +7,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:layout>
-    <div class="container mt-3">
+    <div class="container pb-5 mt-3">
         <h2 class="d-inline">Users</h2>
         <a href="${contextPath}/admin/users/create" class="btn d-inline float-end btn-success"> Create </a>
         <table class="table mt-2 table-striped">
