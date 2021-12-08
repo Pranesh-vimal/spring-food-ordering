@@ -19,8 +19,7 @@
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <button class="btn btn-warning">Search Order</button>
-            </form>
-            ${error}
+            </form>            
         </div>
     </div>
 </t:layout>
