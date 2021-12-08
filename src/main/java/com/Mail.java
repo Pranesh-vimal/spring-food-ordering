@@ -1,6 +1,8 @@
 package com;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -34,9 +36,38 @@ public class Mail {
         msg.setFrom(new InternetAddress(EMAIL, false));
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(order.getEmail()));
 
-        msg.setContent(order.getName().concat(", Your order ID is " + order.getId()), "text/html");
+        msg.setContent(getContent(order), "text/html");
 
         Transport.send(msg);
+    }
+
+    private Object getContent(Order order) {
+
+        Timestamp ts = order.getCreated_at();
+        Date date = new Date();
+        date.setTime(ts.getTime());
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy hh.mm.ss a").format(date);
+
+        return "<html>"
+                + "<body>"
+                + "<h1>Hello <b>" + order.getName() + "</b></h1>"
+                + "<p>Your order ID is <b>#" + order.getId() + "</b></p>"
+                + "<p>Your order place at <b>" + formattedDate + "</b></p>"
+                + "<p>Your order total price is " + order.getTotal() + "</p>"
+                + "<p>Your order details:</p>"
+                + "<table>"
+                + "<tr>"
+                + "<th>Product</th>"
+                + "<th>Quantity</th>"
+                + "<th>Price</th>" +
+                order.getOrderItems().stream().map(item -> "<tr>"
+                        + "<td>" + item.getProduct().getName() + "</td>"
+                        + "<td>" + item.getQuantity() + "</td>"
+                        + "<td>" + item.getSubTotal() + "</td>"
+                        + "</tr>").reduce("", String::concat)
+                + "</table>"
+                + "</body>"
+                + "</html>";
     }
 
     private Session setSession(Properties props) {
