@@ -12,4 +12,6 @@ public interface OrderService {
     List<Order> findAll();
 
     Order getOrder(int orderId, String email);
+
+    Order findById(int orderId);
 }
