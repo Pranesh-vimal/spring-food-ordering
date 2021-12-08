@@ -2,6 +2,7 @@ package com.service;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 import javax.mail.MessagingException;
@@ -60,6 +61,11 @@ public class OrderServiceImpl implements OrderService {
             return order;
         }
         return null;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
     }
 
 }
