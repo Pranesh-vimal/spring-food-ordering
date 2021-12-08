@@ -1,7 +1,7 @@
 package com.service;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.mail.MessagingException;
@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void checkout(Cart cart, Order order) {
         order.setTotal(cart.getTotalPrice());
-        order.setDate(new Date(System.currentTimeMillis()));
+        order.setCreated_at(new Timestamp(System.currentTimeMillis()));
         order.setStatus("Created");
         orderRepository.save(order);
 
@@ -50,6 +50,16 @@ public class OrderServiceImpl implements OrderService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Order getOrder(int orderId, String email) {
+
+        Order order = orderRepository.findById(orderId);
+        if (order != null && order.getEmail().equals(email)) {
+            return order;
+        }
+        return null;
     }
 
 }
