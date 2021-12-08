@@ -26,7 +26,7 @@
                     <td>${item.email}</td>
                     <td>${item.status}</td>
                     <td>
-                        <a class="btn btn-warning" href="/admin/orders/${user.id}">View</a>
+                        <a class="btn btn-warning" href="/admin/orders/${item.id}">View</a>
                     </td>
                 </tr>
             </c:forEach>
