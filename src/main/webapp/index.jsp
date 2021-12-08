@@ -74,5 +74,12 @@
             </div>
         </div>
     </div>
+    <div class="d-none loader">    
+        <div class="d-flex loader-container align-items-center position-fixed w-100 justify-content-center">
+            <div class="spinner-grow text-warning" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
 </t:layout>
 

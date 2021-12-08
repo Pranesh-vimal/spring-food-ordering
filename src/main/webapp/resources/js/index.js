@@ -37,14 +37,7 @@ $('document').ready(function(){
                 $('.error-text').text('Please enter valid details');
             }
             else{
-                checkout();
-                $('.error-text').addClass('d-none');
-                $('.error-text').text('');
-                $('#name').val("");
-                $('#email').val("");
-                $('#phone').val("");
-                $('.cart-container').removeClass('d-none');
-                $('.checkout-container').addClass('d-none');
+                checkout();                
             }
         }        
     });
@@ -117,6 +110,7 @@ async function clearCart(){
 }
 
 async function checkout(){
+    $('.loader').removeClass('d-none');
     let token = $("meta[name='_csrf']").attr("content");
     let header = $("meta[name='_csrf_header']").attr("content");
     await axios({
@@ -132,8 +126,16 @@ async function checkout(){
         }
     }).then(function(res){
         if(res.data=="success"){
+            $('.loader').addClass('d-none');
             swal("Good job!", "Order Placed Successfully!", "success");
             getCart();
+            $('.error-text').addClass('d-none');
+            $('.error-text').text('');
+            $('#name').val("");
+            $('#email').val("");
+            $('#phone').val("");
+            $('.cart-container').removeClass('d-none');
+            $('.checkout-container').addClass('d-none');
         }
         else{
             alert('Order Failed');
