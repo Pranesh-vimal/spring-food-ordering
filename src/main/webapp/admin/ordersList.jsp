@@ -27,7 +27,6 @@
                     <td>${item.status}</td>
                     <td>
                         <a class="btn btn-warning" href="/admin/orders/${user.id}">View</a>
-                        <a class="btn btn-dark" href="/admin/orders/${user.id}/edit">Edit</a>
                     </td>
                 </tr>
             </c:forEach>
