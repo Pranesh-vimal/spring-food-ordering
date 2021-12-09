@@ -14,4 +14,6 @@ public interface OrderService {
     Order getOrder(int orderId, String email);
 
     Order findById(int orderId);
+
+    void save(Order order);
 }
