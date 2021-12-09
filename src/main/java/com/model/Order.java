@@ -32,6 +32,10 @@ public class Order {
 
     private String status;
 
+    private String payment;
+
+    private String transaction_id;
+
     @OneToMany(mappedBy = "order")
     @JsonManagedReference
     private Set<OrderItem> orderItems;
@@ -92,6 +96,22 @@ public class Order {
         this.status = status;
     }
 
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getTransaction_id() {
+        return transaction_id;
+    }
+
+    public void setTransaction_id(String transaction_id) {
+        this.transaction_id = transaction_id;
+    }
+
     public Set<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -103,6 +123,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order [created_at=" + created_at + ", email=" + email + ", id=" + id + ", name=" + name
-                + ", orderItems=" + orderItems + ", phone=" + phone + ", status=" + status + ", total=" + total + "]";
+                + ", orderItems=" + orderItems + ", payment=" + payment + ", phone=" + phone + ", status=" + status
+                + ", total=" + total + ", transaction_id=" + transaction_id + "]";
     }
 }
