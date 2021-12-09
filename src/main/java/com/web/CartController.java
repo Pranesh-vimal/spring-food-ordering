@@ -5,8 +5,12 @@ import java.util.Map;
 import com.model.Cart;
 import com.model.Order;
 import com.model.Product;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
 import com.service.CartService;
 import com.service.OrderService;
+import com.service.PaypalService;
 import com.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,9 @@ public class CartController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private PaypalService paypalService;
 
     @GetMapping("/add/{id}")
     public Cart addToCart(@PathVariable("id") int id) {
@@ -88,7 +95,7 @@ public class CartController {
     @PostMapping("/checkout")
     public String checkout(@RequestBody Map<String, Object> payLoad) {
         Order order = new Order();
-        
+
         order.setName(payLoad.get("name").toString());
         order.setEmail(payLoad.get("email").toString());
         order.setPhone(payLoad.get("phone").toString());
@@ -96,8 +103,20 @@ public class CartController {
         Cart cart = cartService.findBySession(session);
         if (cart != null) {
             orderService.checkout(cart, order);
-            cartService.clearCart(session);
-            return "success";
+
+            try {
+                Payment payment = paypalService.createPayment(order.getTotal(), "USD", "PayPal",
+                        "SALE", order.getId() + "", "http://localhost:8080/payment/pay/cancel",
+                        "http://localhost:8080/payment/pay/success");
+
+                for (Links link : payment.getLinks()) {
+                    if (link.getRel().equals("approval_url")) {
+                        return link.getHref();
+                    }
+                }
+            } catch (PayPalRESTException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
