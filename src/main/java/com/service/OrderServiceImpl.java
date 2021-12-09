@@ -40,17 +40,6 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderItems(orderItemService.findByOrder(order));
         orderRepository.save(order);
-
-        Mail mailer = new Mail();
-        try {
-            mailer.send(order);
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -71,6 +60,22 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findById(int orderId) {
         return orderRepository.findById(orderId);
+    }
+
+    @Override
+    public void save(Order order) {
+        Mail mailer = new Mail();
+        try {
+            mailer.send(order);
+        } catch (AddressException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        orderRepository.save(order);
     }
 
 }
