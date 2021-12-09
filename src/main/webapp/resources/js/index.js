@@ -1,14 +1,14 @@
-$('document').ready(function(){
+$("document").ready(function () {
     // console.log("Hello World");
     getCart();
-    $('.checkout-btn').click(async function(){
-        $('.cart-container').addClass('d-none');
-        $('.order-details').empty();
-        $('.checkout-container').removeClass('d-none');
-        const res=await axios.get('/cart');
-        const data=res.data;
-        if(data!="" && data.cartItems.length>0){
-            $('.order-details').append(`
+    $(".checkout-btn").click(async function () {
+        $(".cart-container").addClass("d-none");
+        $(".order-details").empty();
+        $(".checkout-container").removeClass("d-none");
+        const res = await axios.get("/cart");
+        const data = res.data;
+        if (data != "" && data.cartItems.length > 0) {
+            $(".order-details").append(`
                 <h5>Order Details</h5>
                 <table class="table table-bordered">
                     <tr>
@@ -19,48 +19,46 @@ $('document').ready(function(){
             `);
         }
     });
-    $('.back-btn').click(function(){
-        $('.cart-container').removeClass('d-none');
-        $('.checkout-container').addClass('d-none');
+    $(".back-btn").click(function () {
+        $(".cart-container").removeClass("d-none");
+        $(".checkout-container").addClass("d-none");
     });
-    $('.order-btn').click(function(){
-        let name=$('#name').val();
-        let email=$('#email').val();
-        let phone=$('#phone').val();
-        if(name=="" || email=="" || phone==""){
-            $('.error-text').removeClass('d-none');
-            $('.error-text').text('Please fill all the fields');
+    $(".order-btn").click(function () {
+        let name = $("#name").val();
+        let email = $("#email").val();
+        let phone = $("#phone").val();
+        if (name == "" || email == "" || phone == "") {
+            $(".error-text").removeClass("d-none");
+            $(".error-text").text("Please fill all the fields");
+        } else {
+            if (name.length <= 3 || phone.length < 10 || phone.length > 13) {
+                $(".error-text").removeClass("d-none");
+                $(".error-text").text("Please enter valid details");
+            } else {
+                checkout();
+            }
         }
-        else{
-            if(name.length<=3 || (phone.length<10 || phone.length>13)){
-                $('.error-text').removeClass('d-none');
-                $('.error-text').text('Please enter valid details');
-            }
-            else{
-                checkout();                
-            }
-        }        
     });
 });
 
-async function addtoCart(id){
-    $('.cart-item').empty();
-    $('.cart-body').addClass('d-none');
-    const res=await axios.get(`/cart/add/${id}`);
+async function addtoCart(id) {
+    $(".cart-item").empty();
+    $(".cart-body").addClass("d-none");
+    const res = await axios.get(`/cart/add/${id}`);
     getCart();
 }
 
-async function getCart(){
-    $('.cart-item').empty();
-    $('.cart-body').addClass('d-none');
-    const res=await axios.get('/cart');
-    const data=res.data;
+async function getCart() {
+    $(".cart-item").empty();
+    $(".cart-body").addClass("d-none");
+    const res = await axios.get("/cart");
+    const data = res.data;
     // console.log(data);
-    if(data!="" && data.cartItems.length>0){
-        $('.no-items').addClass('d-none');
-        $('.cart-body').removeClass('d-none');
-        data.cartItems.forEach(function(item){
-            $('.cart-item').append(`
+    if (data != "" && data.cartItems.length > 0) {
+        $(".no-items").addClass("d-none");
+        $(".cart-body").removeClass("d-none");
+        data.cartItems.forEach(function (item) {
+            $(".cart-item").append(`
                 <div class="item mb-3">                                        
                     <div class="card d-flex flex-row" style="height: 10rem;">
                         <div class="card-body d-flex">
@@ -81,66 +79,57 @@ async function getCart(){
                 </div>
             `);
         });
-        $('.cart-item').append(`
+        $(".cart-item").append(`
             <div class="d-flex justify-content-between total-amount">
                 <h5 class="fw-bold">Total Amount:</h5>
                 <h5 class="fw-bold">Rs. ${data.totalPrice}</h5>
             </div>
         `);
+    } else {
+        $(".no-items").removeClass("d-none");
+        $(".cart-body").addClass("d-none");
     }
-    else{
-        $('.no-items').removeClass('d-none');
-        $('.cart-body').addClass('d-none');
-    }
 }
 
-async function removeFromCart(id){
-    const res=await axios.get(`/cart/remove/${id}`);
+async function removeFromCart(id) {
+    const res = await axios.get(`/cart/remove/${id}`);
     getCart();
 }
 
-async function deleteItem(id){
-    const res=await axios.get(`/cart/delete/${id}`);
+async function deleteItem(id) {
+    const res = await axios.get(`/cart/delete/${id}`);
     getCart();
 }
 
-async function clearCart(){
-    const res=await axios.get('/cart/clear');
+async function clearCart() {
+    const res = await axios.get("/cart/clear");
     getCart();
 }
 
-async function checkout(){
-    $('.loader').removeClass('d-none');
+async function checkout() {
+    $(".loader").removeClass("d-none");
     let token = $("meta[name='_csrf']").attr("content");
     let header = $("meta[name='_csrf_header']").attr("content");
     await axios({
-        method: 'post',
-        url: '/cart/checkout',
+        method: "post",
+        url: "/cart/checkout",
         headers: {
-            [header]: token
+            [header]: token,
         },
-        data:{
-            name:$('#name').val(),
-            email:$('#email').val(),
-            phone:$('#phone').val()
-        }
-    }).then(function(res){
-        if(res.data=="success"){
-            $('.loader').addClass('d-none');
-            swal("Good job!", "Order Placed Successfully!", "success");
-            getCart();
-            $('.error-text').addClass('d-none');
-            $('.error-text').text('');
-            $('#name').val("");
-            $('#email').val("");
-            $('#phone').val("");
-            $('.cart-container').removeClass('d-none');
-            $('.checkout-container').addClass('d-none');
-        }
-        else{
-            alert('Order Failed');
-        }
-    }).catch(function(err){
-        console.log(err);
-    });
+        data: {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+        },
+    })
+        .then(function (res) {
+            if (res.data != null) {
+                window.location = res.data;
+            } else {
+                alert("Order Failed");
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
