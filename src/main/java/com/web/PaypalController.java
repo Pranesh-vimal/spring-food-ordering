@@ -32,13 +32,23 @@ public class PaypalController {
     public static final String CANCEL_URL = "pay/cancel";
 
     @GetMapping(value = CANCEL_URL)
-    public String cancelPay(Model model) {
+    public String cancelPay(Model model, @RequestParam("orderId") int orderId) {
         model.addAttribute("title", "Payment Cancelled");
+        Order order = orderService.findById(orderId);
+
+        if (order != null) {
+
+            order.setStatus("Cancelled");
+            order.setPayment("Failded");
+            order.setTransaction_id("");
+            orderService.update(order);
+        }
         return "cancel";
     }
 
     @GetMapping(value = SUCCESS_URL)
-    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,Model model) {
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,
+            Model model) {
         String session = RequestContextHolder.currentRequestAttributes().getSessionId();
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
