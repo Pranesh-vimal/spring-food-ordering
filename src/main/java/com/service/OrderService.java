@@ -16,4 +16,6 @@ public interface OrderService {
     Order findById(int orderId);
 
     void save(Order order);
+
+    void update(Order order);
 }
