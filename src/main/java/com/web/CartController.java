@@ -106,7 +106,7 @@ public class CartController {
 
             try {
                 Payment payment = paypalService.createPayment(order.getTotal(), "USD", "PayPal",
-                        "SALE", order.getId() + "", "http://localhost:8080/payment/pay/cancel",
+                        "SALE", order.getId() + "", "http://localhost:8080/payment/pay/cancel?orderId=" + order.getId(),
                         "http://localhost:8080/payment/pay/success");
 
                 for (Links link : payment.getLinks()) {
