@@ -2,6 +2,7 @@ package com.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,12 +32,13 @@ public class PaypalController {
     public static final String CANCEL_URL = "pay/cancel";
 
     @GetMapping(value = CANCEL_URL)
-    public String cancelPay() {
+    public String cancelPay(Model model) {
+        model.addAttribute("title", "Payment Cancelled");
         return "cancel";
     }
 
     @GetMapping(value = SUCCESS_URL)
-    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,Model model) {
         String session = RequestContextHolder.currentRequestAttributes().getSessionId();
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
@@ -49,6 +51,8 @@ public class PaypalController {
                 order.setTransaction_id(payment.getId());
                 orderService.save(order);
                 cartService.clearCart(session);
+                model.addAttribute("order", order);
+                model.addAttribute("title", "Payment Success");
                 return "success";
             }
 
