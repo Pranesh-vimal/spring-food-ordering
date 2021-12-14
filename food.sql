@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 12:11 PM
+-- Generation Time: Dec 14, 2021 at 12:38 PM
 -- Server version: 8.0.22
 -- PHP Version: 8.0.12
 
@@ -132,7 +132,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `username`, `role_id`) VALUES
-(1, '$2a$10$BMWieEg9BoUFPgmBHrQQyO4YLPusy43tLvYTEd1lqs3SDKmjoBEQK', 'admin123', 2);
+(1, '$2a$10$BMWieEg9BoUFPgmBHrQQyO4YLPusy43tLvYTEd1lqs3SDKmjoBEQK', 'admin123', 2),
+(2, '$2a$10$s8EoAj3RoZwKO13ns2ve5OKkyAU2i0VHyQwNuum1WYTKTzUyG3gVO', 'staff123', 1);
 
 --
 -- Indexes for dumped tables
@@ -229,7 +230,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
