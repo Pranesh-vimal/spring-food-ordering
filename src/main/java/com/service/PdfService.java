@@ -96,7 +96,7 @@ public class PdfService {
                         header.setBackgroundColor(BaseColor.YELLOW);
                         header.setHorizontalAlignment(Element.ALIGN_CENTER);
                         header.setBorderWidth(2);
-                        header.setPadding(2);
+                        header.setPadding(4);
                         header.setPhrase(new Phrase(headerTitle, headFont));
                         table.addCell(header);
                     });
