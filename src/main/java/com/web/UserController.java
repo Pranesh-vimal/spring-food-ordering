@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.WebSecurityConfig;
 import com.model.User;
+import com.service.OrderService;
+import com.service.ProductService;
 import com.service.RoleService;
 import com.service.SecurityService;
 import com.service.UserService;
@@ -27,6 +29,12 @@ public class UserController {
 
 	@Autowired
 	private UserValidator userValidator;
+
+	@Autowired
+	private ProductService productService;
+
+	@Autowired
+	private OrderService orderService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String admin(Model model) {
@@ -112,6 +120,18 @@ public class UserController {
 		if (!WebSecurityConfig.isAuthenticated()) {
 			return "redirect:/admin/login";
 		}
+
+		model.addAttribute("title", "Dashboard");
+
+		int userCount = userService.findAll().size();
+		model.addAttribute("userCount", userCount);
+
+		int productCount = productService.findAll().size();
+		model.addAttribute("productCount", productCount);
+
+		int orderCount = orderService.findAll().size();
+		model.addAttribute("orderCount", orderCount);
+
 		return "welcome";
 	}
 
