@@ -1,5 +1,6 @@
 package com;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -8,12 +9,15 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import com.model.Order;
 
@@ -27,8 +31,21 @@ public class Mail {
     private final boolean AUTH = true;
     private final boolean STARTTLS = true;
 
+    private Multipart multipart;
+
+    public Mail() {
+        this.multipart = new MimeMultipart();
+    }
+
+    private Multipart getMultipart() {
+        return multipart;
+    }
+
     public void send(Order order) throws AddressException, MessagingException, IOException {
         Message msg = new MimeMessage(setSession(setProperties()));
+
+        setAttachment(order);
+        setMessage(order);
 
         msg.setSentDate(new Date());
         msg.setSubject("You're order placed successfully");
@@ -36,9 +53,26 @@ public class Mail {
         msg.setFrom(new InternetAddress(EMAIL, false));
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(order.getEmail()));
 
-        msg.setContent(getContent(order), "text/html");
+        msg.setContent(getMultipart());
 
         Transport.send(msg);
+    }
+
+    private void setMessage(Order order) throws MessagingException {
+        MimeBodyPart message = new MimeBodyPart();
+
+        message.setContent(getContent(order), "text/html");
+
+        getMultipart().addBodyPart(message);
+    }
+
+    private void setAttachment(Order order) throws MessagingException, IOException {
+        MimeBodyPart attachment = new MimeBodyPart();
+
+        attachment.attachFile(
+                new File("src/main/resources/static/pdf/Invoice_" + order.getId() + ".pdf").getCanonicalPath());
+
+        getMultipart().addBodyPart(attachment);
     }
 
     private Object getContent(Order order) {
