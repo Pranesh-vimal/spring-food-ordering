@@ -26,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderItemService orderItemService;
 
+    @Autowired
+    private PdfService pdfService;
+
     @Override
     public void checkout(Cart cart, Order order) {
         order.setTotal(cart.getTotalPrice());
@@ -64,6 +67,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void save(Order order) {
+
+        pdfService.generatePdf(order);
+
         Mail mailer = new Mail();
         try {
             mailer.send(order);
