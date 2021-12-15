@@ -138,10 +138,8 @@ public class PdfService {
             doc.close();
             writer.close();
         } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         } catch (DocumentException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }
