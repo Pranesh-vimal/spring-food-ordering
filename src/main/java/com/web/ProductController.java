@@ -41,7 +41,7 @@ public class ProductController {
     private ProductValidator productValidator;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         productService.init();
     }
 
@@ -112,6 +112,10 @@ public class ProductController {
     @GetMapping("/admin/products/{id}/edit")
     public String adminProductsEdit(Model model, @PathVariable("id") int id) {
         Product product = productService.findById(id);
+
+        if (product.getId() == null) {
+            return "redirect:/admin/products";
+        }
 
         model.addAttribute("productForm", product);
         model.addAttribute("title", "Product Edit");
