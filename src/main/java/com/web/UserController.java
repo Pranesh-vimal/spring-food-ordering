@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+
 import com.WebSecurityConfig;
 import com.model.User;
 import com.service.OrderService;
@@ -35,6 +37,12 @@ public class UserController {
 
 	@Autowired
 	private OrderService orderService;
+
+	@PostConstruct
+	public void init() {
+		roleService.init();
+		userService.init();
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String admin(Model model) {

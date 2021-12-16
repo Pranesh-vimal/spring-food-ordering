@@ -28,4 +28,17 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
+
+    @Override
+    public void init() {
+        List<Role> roles = roleRepository.findAll();
+        if(roles.isEmpty()){
+            Role r = new Role();
+            r.setName("ADMIN");
+            roleRepository.save(r);
+            r = new Role();
+            r.setName("STAFF");
+            roleRepository.save(r);        
+        }
+    }
 }
