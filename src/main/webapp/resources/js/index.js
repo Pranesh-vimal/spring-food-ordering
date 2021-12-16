@@ -31,10 +31,14 @@ $("document").ready(function () {
             $(".error-text").removeClass("d-none");
             $(".error-text").text("Please fill all the fields");
         } else {
-            if (name.length <= 3 || phone.length < 10 || phone.length > 13) {
+            if (phone.length < 10 || phone.length > 13) {
                 $(".error-text").removeClass("d-none");
-                $(".error-text").text("Please enter valid details");
-            } else {
+                $(".error-text").text("Please enter valid Phone Number");
+            }else if( name<=3 ){
+                $(".error-text").removeClass("d-none");
+                $(".error-text").text("Please enter valid Name above 3 Characters");
+            } 
+            else {
                 checkout();
             }
         }
