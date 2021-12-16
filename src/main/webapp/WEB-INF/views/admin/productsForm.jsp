@@ -56,12 +56,11 @@
             <spring:bind path="category">
                 <div class="mb-3 ${status.error ? 'has-error' : ''}">
                     <label class="form-label">Enter Category</label>
-                    <form:input
-                        type="text"
+                    <form:select
                         path="category"
                         class="form-control"
-                        placeholder="category"
-                    ></form:input>
+                        items="${categories}"
+                    ></form:select>
                     <form:errors class="text-danger" path="category"></form:errors>
                 </div>
             </spring:bind>

@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -65,6 +67,10 @@ public class ProductController {
     public String adminProductsCreate(Model model) {
         model.addAttribute("productForm", new Product());
         model.addAttribute("title", "Create Product");
+        Map<String, String> categories = new HashMap<>();
+        categories.put("veg", "Vegetarian");
+        categories.put("non-veg", "Non-Vegetarian");
+        model.addAttribute("categories", categories);
         return "admin/productsForm";
     }
 
@@ -109,6 +115,10 @@ public class ProductController {
 
         model.addAttribute("productForm", product);
         model.addAttribute("title", "Product Edit");
+        Map<String, String> categories = new HashMap<>();
+        categories.put("veg", "Vegetarian");
+        categories.put("non-veg", "Non-Vegetarian");
+        model.addAttribute("categories", categories);
         return "admin/productsForm";
     }
 
