@@ -34,7 +34,7 @@ $("document").ready(function () {
             if (phone.length < 10 || phone.length > 13) {
                 $(".error-text").removeClass("d-none");
                 $(".error-text").text("Please enter valid Phone Number");
-            }else if( name<=3 ){
+            }else if( name.length<=3 ){
                 $(".error-text").removeClass("d-none");
                 $(".error-text").text("Please enter valid Name above 3 Characters");
             } 
