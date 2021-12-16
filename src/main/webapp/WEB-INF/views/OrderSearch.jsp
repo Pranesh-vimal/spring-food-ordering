@@ -20,6 +20,9 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <button class="btn btn-warning">Search Order</button>
             </form>            
+            <c:if test ="${ not empty error }">
+                <p class="text-danger">${error}</p>
+            </c:if>
         </div>
     </div>
 </t:layout>
