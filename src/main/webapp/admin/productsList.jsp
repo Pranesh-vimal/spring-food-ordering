@@ -20,20 +20,29 @@
                 <th>Category</th>
                 <th>Action</th>
             </tr>
-            <c:forEach items="${products}" var="product">
-                <tr>
-                    <td>${product.id}</td>
-                    <td><img class="rounded" src="${product.imageUrl}" width="100" height="100"/></td>
-                    <td>${product.name}</td>
-                    <td>${product.price}</td>
-                    <td>${product.description}</td>
-                    <td>${product.category}</td>
-                    <td>
-                        <a class="btn btn-warning" href="/admin/products/${product.id}/edit">Edit</a>
-                        <a class="btn btn-dark" href="/admin/products/${product.id}/delete">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${not empty products}">
+                    <c:forEach items="${products}" var="product">
+                        <tr>
+                            <td>${product.id}</td>
+                            <td><img class="rounded" src="${product.imageUrl}" width="100" height="100"/></td>
+                            <td>${product.name}</td>
+                            <td>${product.price}</td>
+                            <td>${product.description}</td>
+                            <td>${product.category}</td>
+                            <td>
+                                <a class="btn btn-warning" href="/admin/products/${product.id}/edit">Edit</a>
+                                <a class="btn btn-dark" href="/admin/products/${product.id}/delete">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <tr>
+                        <td colspan="100" class="text-center">No products</td>
+                    </tr>
+                </c:otherwise>
+            </c:choose>
         </table>
     </div>
 </t:layout>
