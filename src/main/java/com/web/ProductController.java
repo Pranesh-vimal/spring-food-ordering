@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import javax.annotation.PostConstruct;
+
 import com.WebSecurityConfig;
 import com.model.Product;
 import com.service.ProductService;
@@ -35,6 +37,11 @@ public class ProductController {
 
     @Autowired
     private ProductValidator productValidator;
+
+    @PostConstruct
+    public void init(){
+        productService.init();
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {

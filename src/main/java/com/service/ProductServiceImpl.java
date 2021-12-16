@@ -38,4 +38,22 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Product product) {
         productRepository.delete(product);
     }
+
+    @Override
+    public void init() {
+        Product p ;
+        List<Product> products = productRepository.findAll();
+        if(products.isEmpty()){
+            for(int i=1;i<=2;i++){
+                p = new Product();
+                p.setName("Food"+i);
+                p.setCategory("Vegetarian");
+                p.setPrice(Double.valueOf(i*10));
+                p.setDescription("This is Food"+i);
+                p.setUnit("Per Kg");
+                p.setImageUrl("\\images\\authimg.jpg");
+                productRepository.save(p);
+            }
+        }
+    }
 }

@@ -14,4 +14,6 @@ public interface ProductService {
     List<Product> findAll();
 
     void delete(Product product);
+
+    void init();
 }
