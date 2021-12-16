@@ -16,4 +16,6 @@ public interface UserService {
 	void update(User user);
 
 	User findById(int id);
+
+	void init();
 }

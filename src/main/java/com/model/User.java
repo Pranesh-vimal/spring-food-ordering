@@ -16,7 +16,7 @@ public class User {
 	@Transient
 	private String passwordConfirm;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	private Role role;
 
 	public Long getId() {

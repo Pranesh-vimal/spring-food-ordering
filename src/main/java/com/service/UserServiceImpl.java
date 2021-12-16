@@ -60,4 +60,23 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
+	@Override
+	public void init() {
+		List<User> users = userRepository.findAll();
+		if(users.isEmpty()){
+			Role admin=roleRepository.findByName("ADMIN");
+			Role staff=roleRepository.findByName("STAFF");
+			User user = new User();
+			user.setUsername("admin123");
+			user.setPassword(bCryptPasswordEncoder.encode("admin123"));
+			user.setRole(admin);
+			userRepository.save(user);
+			user= new User();
+			user.setUsername("staff123");
+			user.setPassword(bCryptPasswordEncoder.encode("staff123"));
+			user.setRole(staff);
+			userRepository.save(user);
+		}
+	}
+
 }
