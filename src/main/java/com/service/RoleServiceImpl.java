@@ -32,13 +32,15 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void init() {
         List<Role> roles = roleRepository.findAll();
-        if(roles.isEmpty()){
-            Role r = new Role();
-            r.setName("ADMIN");
-            roleRepository.save(r);
-            r = new Role();
-            r.setName("STAFF");
-            roleRepository.save(r);        
+
+        if (roles.isEmpty()) {
+            Role role = new Role();
+            role.setName("ADMIN");
+            roleRepository.save(role);
+
+            role = new Role();
+            role.setName("STAFF");
+            roleRepository.save(role);
         }
     }
 }
