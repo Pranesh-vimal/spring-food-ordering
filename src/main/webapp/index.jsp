@@ -10,20 +10,28 @@
         <div class="row w-100 mt-3 mb-5 ms-0 me-0">
             <div class="col-md-8">
                 <div class="row">
-                    <c:forEach items="${products}" var="item">
-                        <div class="col-md-6 mb-3">
-                            <div class="card d-flex flex-row" style="height: 12rem;">
-                                <img src="${item.imageUrl}" class=" w-50 card-img-top" alt="${item.name}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item.name}</h5>
-                                    <p class="mb-2 prod-desc card-text">${item.description}</p>
-                                    <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">${item.unit}</small></p>
-                                    
-                                    <button onclick="addtoCart(this.id)" id="${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</button>
+                    <c:choose>
+                        <c:when test="${ not empty produts }">
+                            <c:forEach items="${products}" var="item">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card d-flex flex-row" style="height: 12rem;">
+                                        <img src="${item.imageUrl}" class=" w-50 card-img-top" alt="${item.name}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.name}</h5>
+                                            <p class="mb-2 prod-desc card-text">${item.description}</p>
+                                            <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">${item.unit}</small></p>
+                                            
+                                            <button onclick="addtoCart(this.id)" id="${item.id}" class="btn btn-warning"><i class="me-1 fas fa-cart-plus"></i> Add to Cart</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                            </c:forEach>
+                        </c:when>    
+                        <c:otherwise>
+                            <h4 class="">No Products Found</h2>
+                            <a class="text-dark" href="/admin" >Add Products in Admin</a>
+                        </c:otherwise>
+                    </c:choose>                    
                 </div>
             </div>
             <div class="col-md-4">
