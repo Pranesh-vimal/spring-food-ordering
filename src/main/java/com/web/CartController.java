@@ -14,6 +14,7 @@ import com.service.PaypalService;
 import com.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +38,9 @@ public class CartController {
 
     @Autowired
     private PaypalService paypalService;
+
+    @Value("${paypal.url}")
+    private String url;
 
     @GetMapping("/add/{id}")
     public Cart addToCart(@PathVariable("id") int id) {
@@ -106,8 +110,8 @@ public class CartController {
 
             try {
                 Payment payment = paypalService.createPayment(order.getTotal(), "USD", "PayPal",
-                        "SALE", order.getId() + "", "http://localhost:8080/payment/pay/cancel?orderId=" + order.getId(),
-                        "http://localhost:8080/payment/pay/success");
+                        "SALE", order.getId() + "", url + "/payment/pay/cancel?orderId=" + order.getId(),
+                        url + "/payment/pay/success");
 
                 for (Links link : payment.getLinks()) {
                     if (link.getRel().equals("approval_url")) {
