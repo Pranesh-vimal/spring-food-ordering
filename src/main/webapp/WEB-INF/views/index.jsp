@@ -14,10 +14,14 @@
                         <c:when test="${ not empty products }">
                             <c:forEach items="${products}" var="item">
                                 <div class="col-md-6 mb-3">
-                                    <div class="card d-flex flex-row" style="height: 12rem;">
+                                    <div class="card d-flex flex-row" style="height: 13rem;">
                                         <img src="${item.imageUrl}" class=" w-50 card-img-top" alt="${item.name}">
                                         <div class="card-body">
-                                            <h5 class="card-title">${item.name}</h5>
+                                            <h5 class=" card-title">${item.name}
+                                                <span class="${item.category}-outer">
+                                                    <span class="${item.category}-inner"></span>
+                                                </span>
+                                            </h5>
                                             <p class="mb-2 prod-desc card-text">${item.description}</p>
                                             <p class="mb-2 card-text fw-bold">Rs. ${item.price} <br><small class=" fw-normal text-muted">${item.unit}</small></p>
                                             
