@@ -29,7 +29,7 @@
                             <td>${product.name}</td>
                             <td>${product.price}</td>
                             <td>${product.description}</td>
-                            <td>${product.category}</td>
+                            <td>${(product.category == 'non-veg') ? 'Non Veg' : 'Veg' }</td>
                             <td>
                                 <a class="btn btn-warning" href="/admin/products/${product.id}/edit">Edit</a>
                                 <a class="btn btn-dark" href="/admin/products/${product.id}/delete">Delete</a>
