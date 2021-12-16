@@ -17,17 +17,26 @@
                 <th>Role</th>
                 <th>Action</th>
             </tr>
-            <c:forEach items="${users}" var="user">
-                <tr>
-                    <td>${user.id}</td>                    
-                    <td>${user.username}</td>                    
-                    <td>${user.role.getName()}</td>
-                    <td>
-                        <a class="btn btn-warning" href="/admin/users/${user.id}/edit">Edit</a>
-                        <a class="btn btn-dark" href="/admin/users/${user.id}/delete">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${not empty users}">
+                    <c:forEach items="${users}" var="user">
+                        <tr>
+                            <td>${user.id}</td>                    
+                            <td>${user.username}</td>                    
+                            <td>${user.role.getName()}</td>
+                            <td>
+                                <a class="btn btn-warning" href="/admin/users/${user.id}/edit">Edit</a>
+                                <a class="btn btn-dark" href="/admin/users/${user.id}/delete">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                 </c:when>
+                <c:otherwise>
+                    <tr>
+                        <td colspan="100" class="text-center">No users</td>
+                    </tr>
+                </c:otherwise>
+            </c:choose>
         </table>
     </div>
 </t:layout>
