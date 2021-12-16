@@ -29,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+                <c:if test="${pageContext.request.userPrincipal.getAuthorities() == '[ADMIN]'}">
                 <div class="col-md-4">
                     <div class="c3 card">
                         <div class="card-body">
@@ -37,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                
+                </c:if>
             </div>
         </c:if>
     </div>
