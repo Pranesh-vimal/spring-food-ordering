@@ -22,13 +22,13 @@
     <body>
         <div class="user-layout">
             <div class="header pb-5">
-                <jsp:include page="${contextPath}/common/header.jsp" />
+                <jsp:include page="${contextPath}/WEB-INF/views/common/header.jsp" />
             </div>
             <div class="contents">
                 <jsp:doBody/>
             </div>
             <div class="footer">
-                <jsp:include page="${contextPath}/common/footer.jsp" />
+                <jsp:include page="${contextPath}/WEB-INF/views/common/footer.jsp" />
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
