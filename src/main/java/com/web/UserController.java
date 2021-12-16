@@ -146,6 +146,11 @@ public class UserController {
 	@GetMapping("/users/{id}/edit")
 	public String adminUsersEdit(@PathVariable("id") int id, Model model) {
 		User user = userService.findById(id);
+
+		if (user.getId() == null) {
+			return "redirect:/admin/users";
+		}
+
 		user.setPassword("");
 		model.addAttribute("userForm", user);
 		model.addAttribute("title", "Edit User");
