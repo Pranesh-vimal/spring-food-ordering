@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <c:choose>
-                        <c:when test="${ not empty produts }">
+                        <c:when test="${ not empty products }">
                             <c:forEach items="${products}" var="item">
                                 <div class="col-md-6 mb-3">
                                     <div class="card d-flex flex-row" style="height: 12rem;">
