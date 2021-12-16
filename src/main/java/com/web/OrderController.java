@@ -34,6 +34,12 @@ public class OrderController {
     @PostMapping("/orders")
     public String getOrder(Model model, @RequestParam Map<String, String> requestParams) {
 
+        if(requestParams.get("orderId") == null || requestParams.get("orderId").isEmpty() || requestParams.get("email").equals("")) {
+            model.addAttribute("title", "Order Search");
+            model.addAttribute("error", "Please enter an order ID or email");
+            return "OrderSearch";
+        }
+
         int orderId = Integer.parseInt(requestParams.get("orderId"));
         String email = requestParams.get("email").toString();
         Order order = orderService.getOrder(orderId, email);
