@@ -52,10 +52,10 @@
                             >
                                 Log In
                             </button>                        
-                            <!-- <a href="${contextPath}/admin/registration"
-                                class="btn w-100 btn-primary "
-                                >Create an account</a
-                            >                             -->
+                            <a href="${contextPath}/"
+                                class="btn w-100 btn-dark "
+                                >Visit Product Home</a
+                            >                            
                         </div>
                     </form>
                 </div>
