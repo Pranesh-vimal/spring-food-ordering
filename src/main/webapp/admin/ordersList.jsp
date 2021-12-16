@@ -18,18 +18,27 @@
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
-            <c:forEach items="${orders}" var="item">
-                <tr>
-                    <td>${item.id}</td>                    
-                    <td>${item.name}</td>                    
-                    <td>${item.phone}</td>
-                    <td>${item.email}</td>
-                    <td>${item.status}</td>
-                    <td>
-                        <a class="btn btn-warning" href="/admin/orders/${item.id}">View</a>
-                    </td>
-                </tr>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${not empty orders}">
+                    <c:forEach items="${orders}" var="item">
+                        <tr>
+                            <td>${item.id}</td>                    
+                            <td>${item.name}</td>                    
+                            <td>${item.phone}</td>
+                            <td>${item.email}</td>
+                            <td>${item.status}</td>
+                            <td>
+                                <a class="btn btn-warning" href="/admin/orders/${item.id}">View</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <tr>
+                        <td colspan="100" class="text-center">No orders</td>
+                    </tr>
+                </c:otherwise>
+            </c:choose>
         </table>
     </div>
 </t:layout>
