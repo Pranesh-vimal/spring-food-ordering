@@ -13,14 +13,16 @@
                 Welcome <span class="text-warning">${pageContext.request.userPrincipal.name}  </span>
             </h2>
             <div class="row mt-5">
-                <div class="col-md-4">
-                    <div class="c1 card">
-                        <div class="card-body">
-                            <div class="card-title h5">Number of Users - <span >${userCount}</span></div>
-                            <p class="card-text"><a href="/admin/users">Click Here To View</a></p>
+                <c:if test="${pageContext.request.userPrincipal.getAuthorities() == '[ADMIN]'}">
+                    <div class="col-md-4">
+                        <div class="c1 card">
+                            <div class="card-body">
+                                <div class="card-title h5">Number of Users - <span >${userCount}</span></div>
+                                <p class="card-text"><a href="/admin/users">Click Here To View</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:if>                
                 <div class="col-md-4">
                     <div class="c2 card">
                         <div class="card-body">
@@ -30,14 +32,14 @@
                     </div>
                 </div>
                 <c:if test="${pageContext.request.userPrincipal.getAuthorities() == '[ADMIN]'}">
-                <div class="col-md-4">
-                    <div class="c3 card">
-                        <div class="card-body">
-                            <div class="card-title h5">Number of Products - <span>${productCount}</span></div>
-                            <p class="card-text"><a href="/admin/products">Click Here To View</a></p>
+                    <div class="col-md-4">
+                        <div class="c3 card">
+                            <div class="card-body">
+                                <div class="card-title h5">Number of Products - <span>${productCount}</span></div>
+                                <p class="card-text"><a href="/admin/products">Click Here To View</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </c:if>
             </div>
         </c:if>
