@@ -36,7 +36,7 @@ public class OrderController {
 
         if(requestParams.get("orderId") == null || requestParams.get("orderId").isEmpty() || requestParams.get("email").equals("")) {
             model.addAttribute("title", "Order Search");
-            model.addAttribute("error", "Please enter an order ID or email");
+            model.addAttribute("error", "Please enter an order ID and email");
             return "OrderSearch";
         }
 
