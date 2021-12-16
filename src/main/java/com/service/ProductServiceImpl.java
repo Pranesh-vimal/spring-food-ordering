@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
             for (int i = 1; i <= 2; i++) {
                 product = new Product();
                 product.setName("Food" + i);
-                product.setCategory("Vegetarian");
+                product.setCategory("non-veg");
                 product.setPrice(Double.valueOf(i * 10));
                 product.setDescription("This is Food" + i);
                 product.setUnit("Per Kg");
