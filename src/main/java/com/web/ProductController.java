@@ -119,17 +119,25 @@ public class ProductController {
 
         model.addAttribute("productForm", product);
         model.addAttribute("title", "Product Edit");
+
         Map<String, String> categories = new HashMap<>();
         categories.put("veg", "Vegetarian");
         categories.put("non-veg", "Non-Vegetarian");
         model.addAttribute("categories", categories);
+
         return "admin/productsForm";
     }
 
     @PostMapping("/admin/products/{id}/edit")
     public String adminProductsUpdate(@ModelAttribute("productForm") Product productForm, BindingResult bindingResult,
-            @RequestParam("image") MultipartFile file) throws IOException {
+            @RequestParam("image") MultipartFile file, Model model) throws IOException {
         productValidator.validate(productForm, bindingResult);
+
+        Map<String, String> categories = new HashMap<>();
+        categories.put("veg", "Vegetarian");
+        categories.put("non-veg", "Non-Vegetarian");
+        model.addAttribute("title", "Product Edit");
+        model.addAttribute("categories", categories);
 
         if (bindingResult.hasErrors()) {
             return "admin/productsForm";
