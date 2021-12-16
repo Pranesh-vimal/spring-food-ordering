@@ -41,18 +41,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void init() {
-        Product p ;
+        Product product;
         List<Product> products = productRepository.findAll();
-        if(products.isEmpty()){
-            for(int i=1;i<=2;i++){
-                p = new Product();
-                p.setName("Food"+i);
-                p.setCategory("Vegetarian");
-                p.setPrice(Double.valueOf(i*10));
-                p.setDescription("This is Food"+i);
-                p.setUnit("Per Kg");
-                p.setImageUrl("\\images\\authimg.jpg");
-                productRepository.save(p);
+
+        if (products.isEmpty()) {
+
+            for (int i = 1; i <= 2; i++) {
+                product = new Product();
+                product.setName("Food" + i);
+                product.setCategory("Vegetarian");
+                product.setPrice(Double.valueOf(i * 10));
+                product.setDescription("This is Food" + i);
+                product.setUnit("Per Kg");
+                product.setImageUrl("\\images\\dummy.jpg");
+                productRepository.save(product);
             }
         }
     }
