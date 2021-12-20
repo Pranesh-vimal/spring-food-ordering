@@ -66,15 +66,15 @@
                             <form onsubmit="event.preventDefault()" class="mb-1" action="" method="post">
                                 <div class="mb-3">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone" autocomplete="off">
                                 </div>
                                 <p class="text-danger error-text d-none"></p>
                                 <button type="submit" class="btn order-btn btn-warning  w-100">Order Now</button> 
