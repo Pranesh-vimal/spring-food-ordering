@@ -18,7 +18,7 @@
                             <span class="text-danger">Cancelled</span>
                         </c:when>
                         <c:otherwise>
-                            <form method="post" name="updateStatus" action="/admin/orders/${order.id}" class="d-inline"></form>
+                            <form method="post" name="updateStatus" action="/admin/orders/${order.id}" class="d-inline">
                                 <select onchange="this.form.submit()" style="width: unset !important;" class="form-control d-inline" name="status" id="status">
                                     <option value="Created" ${order.status=='Created' ? 'selected' : ''}>Created</option>
                                     <option value="Pending" ${order.status=='Pending' ? 'selected' : ''}>Pending</option>
@@ -29,6 +29,8 @@
                         </c:otherwise>
                     </c:choose>
                 </h5>
+                <h5>Order Payment: ${order.payment}</h5>
+                <h5>Order Transaction: ${order.transaction_id}</h5>
                 <h5>Order Total: Rs. ${order.total}</h5>
                 <h5>Order Items:</h5>
                 <table class="table table-striped">
