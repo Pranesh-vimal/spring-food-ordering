@@ -51,7 +51,7 @@ public class OrderController {
     @GetMapping("/admin/orders")
     public String findAllOrders(Model model) {
         model.addAttribute("title", "Orders");
-        model.addAttribute("orders", orderService.findAll());
+        model.addAttribute("orders", orderService.findAllByDesc());
         return "admin/ordersList";
     }
 
