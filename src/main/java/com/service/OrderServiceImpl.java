@@ -88,4 +88,9 @@ public class OrderServiceImpl implements OrderService {
     public void update(Order order) {
         orderRepository.save(order);
     }
+
+    @Override
+    public List<Order> findAllByDesc() {
+        return orderRepository.findAllByOrderByIdDesc();
+    }
 }
