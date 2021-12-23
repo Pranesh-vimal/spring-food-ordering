@@ -12,6 +12,7 @@
                 <h5>Order #${order.id}</h5>
                 <h5>Order Date: ${order.created_at}</h5>
                 <h5>Order Status: ${order.status}</h5>
+                <h5>Order Payment: ${order.payment}</h5>
                 <h5>Order Total: Rs. ${order.total}</h5>
                 <h5>Order Items:</h5>
                 <table class="table table-striped">
