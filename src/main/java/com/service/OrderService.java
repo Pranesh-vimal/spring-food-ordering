@@ -18,4 +18,6 @@ public interface OrderService {
     void save(Order order);
 
     void update(Order order);
+
+    List<Order> findAllByDesc();
 }
