@@ -50,6 +50,8 @@ async function addtoCart(id) {
     $(".cart-body").addClass("d-none");
     const res = await axios.get(`/cart/add/${id}`);
     getCart();
+    $(".cart-container").removeClass("d-none");
+    $(".checkout-container").addClass("d-none");
 }
 
 async function getCart() {
