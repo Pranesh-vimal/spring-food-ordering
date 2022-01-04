@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -22,6 +23,7 @@ public class Cart {
     private String session;
 
     @OneToMany(mappedBy = "cart")
+    @OrderBy("id")
     @JsonManagedReference
     private Set<CartItem> cartItems;
 
